@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Catamaran', sans-serif;
+}
+
+.App {
+  margin: 16px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  outline: none;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: #fff;
+  background: #000a47;
+  line-height: 2.15;
+  font-size: 25px;
+  width: 100%;
+}
