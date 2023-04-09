@@ -20,6 +20,13 @@ const videoData = [
     genre: 'pop',
     url: 'https://www.something.cz',
   },
+  {
+    id: '0004',
+    name: 'Michael Jackson',
+    description: 'some desc',
+    genre: 'pop',
+    url: 'https://www.something.cz',
+  },
 ];
 
 export default videoData;
