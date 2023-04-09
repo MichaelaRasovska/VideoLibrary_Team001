@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import VideoGridList from './VideoGridList';
 import VideoTableList from './VideoTableList';
+import AddVideoForm from './AddVideoForm';
 
 //styling bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -24,14 +25,14 @@ const VideoList = (props) => {
     });
   }, [searchBy, props.videoList]);
 
-  function handleSearch(event) {
+  const handleSearch = (event) => {
     event.preventDefault();
     setSearchBy(event.target['searchInput'].value);
-  }
+  };
 
-  function handleSearchDelete(event) {
+  const handleSearchDelete = (event) => {
     if (!event.target.value) setSearchBy('');
-  }
+  };
 
   return (
     <div>
@@ -42,7 +43,7 @@ const VideoList = (props) => {
             <Form className="d-flex" onSubmit={handleSearch}>
               <Form.Control
                 id={'searchInput'}
-                style={{ maxWidth: '150px' }}
+                style={{ maxWidth: '200px', marginRight: '8px' }}
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
@@ -67,6 +68,7 @@ const VideoList = (props) => {
                 <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
                 {isGrid ? 'Tabulka' : 'Grid'}
               </Button>
+              <AddVideoForm></AddVideoForm>
             </Form>
           </div>
         </div>
