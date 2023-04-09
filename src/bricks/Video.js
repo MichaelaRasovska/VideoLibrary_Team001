@@ -6,22 +6,24 @@ import VideoDetailsList from './VideoDetailsList';
 
 const Video = (props) => {
   return (
-    <Card>
-      <Card.Body>
-        <div key={props.video.id} className="video">
-          <div>
-            <Icon path={mdiMusic} size={1} color="grey" /> {props.video.name}
+    <div>
+      <Card>
+        <Card.Body>
+          <div key={props.video.id} className="video">
+            <div>
+              <Icon path={mdiMusic} size={1} color="grey" /> {props.video.name}
+            </div>
+            <div>
+              <Icon path={mdiTuneVariant} size={1} color="grey" />
+              {props.video.genre}
+            </div>
+            <div>
+              <VideoDetailsList key={props.video.id} videoData={props.video} />
+            </div>
           </div>
-          <div>
-            <Icon path={mdiTuneVariant} size={1} color="grey" />
-            {props.video.genre}
-          </div>
-          <div>
-            <VideoDetailsList name={props.name} genre={props.genre} />
-          </div>
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 

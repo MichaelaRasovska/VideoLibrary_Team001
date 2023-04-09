@@ -6,14 +6,16 @@ function VideoTableList(props) {
     <Table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Genre</th>
+          <th>ID</th>
+          <th>Interpret</th>
+          <th>Žánr</th>
         </tr>
       </thead>
       <tbody>
         {props.videoList.map((video) => {
           return (
             <tr key={video.id}>
+              <td>{video.id}</td>
               <td>{video.name}</td>
               <td>{video.genre}</td>
             </tr>

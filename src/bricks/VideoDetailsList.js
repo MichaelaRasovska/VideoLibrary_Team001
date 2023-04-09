@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
 
-const VideoDetailsList = () => {
+const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
 
   const handleShowModal = () => setShow(true);
@@ -14,7 +14,26 @@ const VideoDetailsList = () => {
         <Modal.Header closeButton>
           <Modal.Title>Detail videa</Modal.Title>
         </Modal.Header>
-        <Modal.Body></Modal.Body>
+        <Modal.Body>
+          <div>
+            <div>
+              <span className="text-muted">Interpret: </span>
+              <b>{props.videoData.name}</b>
+            </div>
+            <div>
+              <span className="text-muted">Žánr: </span>
+              <b>{props.videoData.genre}</b>
+            </div>
+            <div>
+              <span className="text-muted">Popis videa: </span>
+              <b>{props.videoData.description}</b>
+            </div>
+            <div>
+              <span className="text-muted">URL videa: </span>
+              <b>{props.videoData.url}</b>
+            </div>
+          </div>
+        </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
       <div
@@ -22,7 +41,7 @@ const VideoDetailsList = () => {
         size={1}
         onClick={handleShowModal}
       >
-        detail videa
+        Detail videa
       </div>
     </>
   );

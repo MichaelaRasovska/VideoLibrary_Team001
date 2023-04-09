@@ -8,9 +8,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="videoContainer">
-        <VideoList videoList={videoData} />
-      </div>
+      <VideoList videoList={videoData} />
     </div>
   );
 }

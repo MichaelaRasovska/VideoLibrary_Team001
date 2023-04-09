@@ -6,7 +6,7 @@ import VideoTableList from './VideoTableList';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-//styling mdi
+//icons mdi
 import Icon from '@mdi/react';
 import { mdiTable, mdiViewGridOutline, mdiMagnify } from '@mdi/js';
 
