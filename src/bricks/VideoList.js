@@ -20,7 +20,8 @@ const VideoList = (props) => {
     return props.videoList.filter((item) => {
       return (
         item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
-        item.genre.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
+        item.genre.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
+        item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
       );
     });
   }, [searchBy, props.videoList]);
