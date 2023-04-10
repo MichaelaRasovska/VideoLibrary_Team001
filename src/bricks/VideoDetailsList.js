@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
@@ -18,23 +19,34 @@ const VideoDetailsList = (props) => {
           <div>
             <div>
               <span className="text-muted">Interpret: </span>
-              <b>{props.videoData.name}</b>
+              <b>{props.video.name}</b>
+            </div>
+            <div>
+              <span className="text-muted">Název videa: </span>
+              <b>{props.video.title}</b>
+            </div>
+            <div>
+              <span className="text-muted">Délka videa: </span>
+              <b>{props.video.duration}</b>
             </div>
             <div>
               <span className="text-muted">Žánr: </span>
-              <b>{props.videoData.genre}</b>
+              <b>{props.video.genre}</b>
             </div>
             <div>
               <span className="text-muted">Popis videa: </span>
-              <b>{props.videoData.description}</b>
+              <b>{props.video.description}</b>
             </div>
             <div>
               <span className="text-muted">URL videa: </span>
-              <b>{props.videoData.url}</b>
+              <b>{props.video.url}</b>
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer>
+          <Button variant="outline-secondary">Smazat</Button>
+          <Button variant="outline-primary">Upravit</Button>
+        </Modal.Footer>
       </Modal>
       <div
         style={{ color: 'grey', cursor: 'pointer' }}

@@ -5,12 +5,34 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
+import videoData from '../data/videoData';
+
+//data
+const defaultData = {
+  id: '',
+  name: '',
+  title: '',
+  duration: '',
+  description: '',
+  genre: '',
+  url: '',
+};
 
 const AddVideoForm = (props) => {
+  //modal states
   const [isModalShown, setShow] = useState(false);
 
   const handleShowModal = () => setShow(true);
   const handleCloseModal = () => setShow(false);
+
+  //form states
+  const [formData, setFormData] = useState(defaultData);
+
+  const handleSubmit = async () => {
+    videoData.push(formData);
+    console.log(videoData);
+  };
+
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -20,11 +42,39 @@ const AddVideoForm = (props) => {
         <Modal.Body>
           <form className="addVideoForm">
             <label>
-              Interpret:<input type="text"></input>
+              Interpret:
+              <input
+                type="text"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              ></input>
+            </label>
+            <label>
+              Název videa:
+              <input
+                type="text"
+                onChange={(e) => {
+                  setFormData({ ...formData, title: e.target.value });
+                }}
+              ></input>
+            </label>
+            <label>
+              Délka videa:
+              <input
+                type="number"
+                onChange={(e) => {
+                  setFormData({ ...formData, duration: e.target.value });
+                }}
+              ></input>
             </label>
             <label>
               Žánr:
-              <select>
+              <select
+                onChange={(e) => {
+                  setFormData({ ...formData, genre: e.target.value });
+                }}
+              >
                 <option value="default">Vyberte...</option>
                 <option value="pop">Pop</option>
                 <option value="rock">Rock</option>
@@ -32,9 +82,38 @@ const AddVideoForm = (props) => {
                 <option value="hip-hop">Hip-hop</option>
               </select>
             </label>
+            <label>
+              Popis:
+              <input
+                type="text"
+                onChange={(e) => {
+                  setFormData({ ...formData, description: e.target.value });
+                }}
+              ></input>
+            </label>
+            <label>
+              Link na video:
+              <input
+                type="text"
+                onChange={(e) => {
+                  setFormData({ ...formData, url: e.target.value });
+                }}
+              ></input>
+            </label>
           </form>
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer>
+          <Button variant="outline-secondary">Vymazat</Button>
+          <Button
+            variant="outline-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
+            Vložit
+          </Button>
+        </Modal.Footer>
       </Modal>
       <Button
         style={{ marginLeft: '8px' }}
