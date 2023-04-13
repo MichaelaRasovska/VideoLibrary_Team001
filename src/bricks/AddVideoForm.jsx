@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Modal } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
@@ -27,12 +27,18 @@ const AddVideoForm = (props) => {
 
   //form states
   const [formData, setFormData] = useState(defaultData);
+  const [formFilled, setFormFilled] = useState(false);
+
+  /*useEffect(() => {
+    return <VideoList videoList={videoData} />;
+  }, [formFilled]);*/
 
   const handleSubmit = async () => {
     videoData.push(formData);
+    setFormFilled(true);
+    console.log(formFilled);
     console.log(videoData);
   };
-
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
