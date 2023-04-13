@@ -36,6 +36,8 @@ const AddVideoForm = (props) => {
   const handleSubmit = async () => {
     videoData.push(formData);
     setFormFilled(true);
+    handleCloseModal();
+    console.log(formData)
     console.log(formFilled);
     console.log(videoData);
   };

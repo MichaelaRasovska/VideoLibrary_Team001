@@ -74,11 +74,12 @@ const VideoList = (props) => {
           </div>
         </div>
       </Navbar>
+      <div className='grid' >
       {isGrid ? (
         <VideoGridList videoList={filteredVideoList} />
       ) : (
         <VideoTableList videoList={filteredVideoList} />
-      )}
+      )}</div>
     </div>
   );
 };
