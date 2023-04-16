@@ -15,6 +15,7 @@ import {
   durationValidation,
 } from './validations';
 import { Input } from './Input';
+import { Textarea } from './Textarea';
 
 //data
 const defaultData = {
@@ -108,21 +109,27 @@ const AddVideoForm = (props) => {
             </label>
             <label>
               Název videa:
-              <input
+              <Input
                 type="text"
+                validationMessage={titleValidation(formData.title)}
+                errorMessage={errorMessage.title}
                 onChange={(e) => {
                   setFormData({ ...formData, title: e.target.value });
+                  setErrorMessage({ ...errorMessage, title: '' });
                 }}
-              ></input>
+              ></Input>
             </label>
             <label>
               Délka videa:
-              <input
+              <Input
                 type="number"
+                validationMessage={durationValidation(formData.duration)}
+                errorMessage={errorMessage.duration}
                 onChange={(e) => {
                   setFormData({ ...formData, duration: e.target.value });
+                  setErrorMessage({ ...errorMessage, duration: '' });
                 }}
-              ></input>
+              ></Input>
             </label>
             <label>
               Vyber odpovídající žánry:
@@ -169,32 +176,30 @@ const AddVideoForm = (props) => {
             </label>
             <label>
               Popis:
-              <textarea
-                rows="6"
-                cols="30"
-                type="text"
+              <Textarea
                 onChange={(e) => {
                   setFormData({ ...formData, description: e.target.value });
                 }}
-              ></textarea>
+              ></Textarea>
             </label>
             <label>
               Link na video:
-              <input
+              <Input
                 type="text"
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
+                  setErrorMessage({ ...errorMessage, url: '' });
                 }}
-              ></input>
+              ></Input>
             </label>
             <label>
               Link na obrázek:
-              <input
+              <Input
                 type="text"
                 onChange={(e) => {
                   setFormData({ ...formData, picture: e.target.value });
                 }}
-              ></input>
+              ></Input>
             </label>
           </form>
         </Modal.Body>

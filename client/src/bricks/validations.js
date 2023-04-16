@@ -25,8 +25,8 @@ export const durationValidation = (duration) => {
   if (duration === '') {
     return 'Délka videa musí být vyplněna';
   }
-  if (duration.length < 9) {
-    return `Telefonní číslo musí mít alespoň 9 číslic`;
+  if (duration.length < 0.9) {
+    return `Délka videa musí být minimálně 1 min`;
   }
   return 'Vložte prosím trvání videa s tečkou';
 };
