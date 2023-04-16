@@ -14,6 +14,7 @@ import {
   descriptionValidation,
   durationValidation,
 } from './validations';
+import { Input } from './Input';
 
 //data
 const defaultData = {
@@ -95,7 +96,7 @@ const AddVideoForm = (props) => {
           <form className="addVideoForm">
             <label>
               Interpret:
-              <input
+              <Input
                 type="text"
                 validationMessage={nameValidation(formData.name)}
                 errorMessage={errorMessage.name}
@@ -103,7 +104,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, name: e.target.value });
                   setErrorMessage({ ...errorMessage, name: '' });
                 }}
-              ></input>
+              ></Input>
             </label>
             <label>
               Název videa:
@@ -123,7 +124,7 @@ const AddVideoForm = (props) => {
                 }}
               ></input>
             </label>
-            <label htmlFor="">
+            <label>
               Vyber odpovídající žánry:
               <div>
                 <input
@@ -135,7 +136,7 @@ const AddVideoForm = (props) => {
                     });
                   }}
                 />
-                <label for="pop">Pop</label>
+                <label>Pop</label>
               </div>
               <div>
                 <input
@@ -147,23 +148,23 @@ const AddVideoForm = (props) => {
                     });
                   }}
                 />
-                <label for="rock">Rock</label>
+                <label>Rock</label>
               </div>
               <div>
                 <input type="checkbox" />
-                <label for="opera">Opera</label>
+                <label>Opera</label>
               </div>
               <div>
                 <input type="checkbox" />
-                <label for="hip-hop">Hip-hop</label>
+                <label>Hip-hop</label>
               </div>
               <div>
                 <input type="checkbox" />
-                <label for="metal">Metal</label>
+                <label>Metal</label>
               </div>
               <div>
                 <input type="checkbox" />
-                <label for="jine">Jiné</label>
+                <label>Jiné</label>
               </div>
             </label>
             <label>

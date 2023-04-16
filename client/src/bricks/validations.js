@@ -3,7 +3,7 @@ export const nameValidation = (name) => {
     return `Jméno interpreta je povinné`;
   }
   if (name.trim().length < 3) {
-    return `Jméno musí mít alespoň tři znaky`;
+    return `Jméno interpreta musí mít alespoň tři znaky`;
   }
   return null;
 };
