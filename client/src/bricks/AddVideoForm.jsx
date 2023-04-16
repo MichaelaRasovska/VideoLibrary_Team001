@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Modal } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
@@ -18,6 +18,9 @@ const defaultData = {
   url: '',
 };
 
+export let newVideoData = [];
+export let newFormState = false;
+
 const AddVideoForm = (props) => {
   //modal states
   const [isModalShown, setShow] = useState(false);
@@ -27,20 +30,15 @@ const AddVideoForm = (props) => {
 
   //form states
   const [formData, setFormData] = useState(defaultData);
-  const [formFilled, setFormFilled] = useState(false);
 
-  /*useEffect(() => {
-    return <VideoList videoList={videoData} />;
-  }, [formFilled]);*/
-
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     videoData.push(formData);
-    setFormFilled(true);
+    setFormData(defaultData);
     handleCloseModal();
-    console.log(formData)
-    console.log(formFilled);
-    console.log(videoData);
+    newVideoData = videoData;
+    newFormState = true;
   };
+
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -76,28 +74,59 @@ const AddVideoForm = (props) => {
                 }}
               ></input>
             </label>
-            <label>
-              Žánr:
-              <select
-                onChange={(e) => {
-                  setFormData({ ...formData, genre: e.target.value });
-                }}
-              >
-                <option value="default">Vyberte...</option>
-                <option value="pop">Pop</option>
-                <option value="rock">Rock</option>
-                <option value="Opera">Opera</option>
-                <option value="hip-hop">Hip-hop</option>
-              </select>
+            <label htmlFor="">
+              Vyber odpovídající žánry:
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      genre: 'pop',
+                    });
+                  }}
+                />
+                <label for="pop">Pop</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      genre: 'rock',
+                    });
+                  }}
+                />
+                <label for="rock">Rock</label>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <label for="opera">Opera</label>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <label for="hip-hop">Hip-hop</label>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <label for="metal">Metal</label>
+              </div>
+              <div>
+                <input type="checkbox" />
+                <label for="jine">Jiné</label>
+              </div>
             </label>
             <label>
               Popis:
-              <input
+              <textarea
+                rows="6"
+                cols="30"
                 type="text"
                 onChange={(e) => {
                   setFormData({ ...formData, description: e.target.value });
                 }}
-              ></input>
+              ></textarea>
             </label>
             <label>
               Link na video:
@@ -105,6 +134,15 @@ const AddVideoForm = (props) => {
                 type="text"
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
+                }}
+              ></input>
+            </label>
+            <label>
+              Link na obrázek:
+              <input
+                type="text"
+                onChange={(e) => {
+                  setFormData({ ...formData, picture: e.target.value });
                 }}
               ></input>
             </label>
