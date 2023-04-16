@@ -1,0 +1,53 @@
+[
+  {
+    "id": "7c3dc385-9ba3-449b-b10b-808bbcf53638",
+    "name": "Beyonce",
+    "title": "Halo",
+    "duration": 135,
+    "description": "very popular song from Beyonce",
+    "genres": [
+      "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+      "2aa337ae-4330-4be9-b0f4-4325b3e1a18a"
+    ],
+    "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
+    "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
+  },
+  {
+    "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e",
+    "name": "Eminem",
+    "title": "Superman",
+    "duration": 120,
+    "description": "The best song from Eminem ever.",
+    "genres": [
+      "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+    ],
+    "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
+    "picture": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4"
+  },
+  {
+    "id": "1fb0182b-b876-4ffc-8d14-59d2244cb895",
+    "name": "Shakira",
+    "title": "Waka Waka",
+    "duration": 221,
+    "description": "Lets dance on Waka waka song.",
+    "genres": [
+      "b12dcfdf-eea2-421d-b421-d54ff3d7c81b",
+      "22b545bb-9ecc-4d85-b953-f6d0bc43c6e2",
+      "2aa337ae-4330-4be9-b0f4-4325b3e1a18a"
+    ],
+    "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
+    "picture": "https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg"
+  },
+  {
+    "id": "abc811be-f251-45f4-8986-17522185c74e",
+    "name": "Michael Jackson",
+    "title": "Billie Jean",
+    "duration": 250,
+    "description": "Michael is the best!",
+    "genres": [
+      "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064"
+    ],
+    "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
+    "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg"
+  }
+]
