@@ -9,7 +9,6 @@ import videoData from '../data/videoData';
 import {
   nameValidation,
   titleValidation,
-  linkValidation,
   requiredValidation,
   descriptionValidation,
   durationValidation,
@@ -26,6 +25,7 @@ const defaultData = {
   description: '',
   genre: '',
   url: '',
+  picture: '',
 };
 
 export let newVideoData = [];
@@ -59,10 +59,10 @@ const AddVideoForm = (props) => {
     if (requiredValidation(formData.genre) !== null) {
       isValid = false;
     }
-    if (linkValidation(formData.url) !== null) {
+    if (requiredValidation(formData.url) !== null) {
       isValid = false;
     }
-    if (linkValidation(formData.picture) !== null) {
+    if (requiredValidation(formData.picture) !== null) {
       isValid = false;
     }
 
@@ -72,8 +72,8 @@ const AddVideoForm = (props) => {
       duration: durationValidation(formData.duration),
       genre: requiredValidation(formData.genre),
       description: descriptionValidation(formData.description),
-      url: linkValidation(formData.url),
-      picture: linkValidation(formData.picture),
+      url: requiredValidation(formData.url),
+      picture: requiredValidation(formData.picture),
     });
     return isValid;
   };
@@ -130,6 +130,7 @@ const AddVideoForm = (props) => {
                   setErrorMessage({ ...errorMessage, duration: '' });
                 }}
               ></Input>
+              minut
             </label>
             <label>
               Vyber odpovídající žánry:
@@ -177,8 +178,11 @@ const AddVideoForm = (props) => {
             <label>
               Popis:
               <Textarea
+                validationMessage={descriptionValidation(formData.description)}
+                errorMessage={errorMessage.description}
                 onChange={(e) => {
                   setFormData({ ...formData, description: e.target.value });
+                  setErrorMessage({ ...errorMessage, description: '' });
                 }}
               ></Textarea>
             </label>
@@ -186,6 +190,8 @@ const AddVideoForm = (props) => {
               Link na video:
               <Input
                 type="text"
+                validationMessage={requiredValidation(formData.url)}
+                errorMessage={errorMessage.url}
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
                   setErrorMessage({ ...errorMessage, url: '' });
@@ -195,9 +201,11 @@ const AddVideoForm = (props) => {
             <label>
               Link na obrázek:
               <Input
-                type="text"
+                validationMessage={requiredValidation(formData.picture)}
+                errorMessage={errorMessage.picture}
                 onChange={(e) => {
                   setFormData({ ...formData, picture: e.target.value });
+                  setErrorMessage({ ...errorMessage, picture: '' });
                 }}
               ></Input>
             </label>

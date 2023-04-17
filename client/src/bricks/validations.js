@@ -19,13 +19,13 @@ export const titleValidation = (title) => {
 };
 
 export const durationValidation = (duration) => {
-  if (/^[0-9]{9}$/.test(duration)) {
+  if (/^[0-59]+.[0-59]/.test(duration)) {
     return null;
   }
   if (duration === '') {
     return 'Délka videa musí být vyplněna';
   }
-  if (duration.length < 0.9) {
+  if (duration.length < 1) {
     return `Délka videa musí být minimálně 1 min`;
   }
   return 'Vložte prosím trvání videa s tečkou';
@@ -46,14 +46,4 @@ export const requiredValidation = (value) => {
     return 'Musí být vyplněno';
   }
   return null;
-};
-
-export const linkValidation = (link) => {
-  if (/^https[a-zA-Z0-9._-]+\.[a-zA-z]{2,4}$/.test(link)) {
-    return null;
-  }
-  if (link.trim() === '') {
-    return 'Url musí být vyplněna';
-  }
-  return 'Vložte prosím url ve správném tvaru';
 };
