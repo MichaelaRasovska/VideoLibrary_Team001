@@ -13,6 +13,8 @@ const options = [
   { label: 'Jiné', value: 'other' },
 ];
 
+export let selectedGenres = [];
+
 const Multiselect = () => {
   const [selected, setSelected] = useState([]);
 
@@ -28,4 +30,5 @@ const Multiselect = () => {
     </div>
   );
 };
+
 export default Multiselect;
