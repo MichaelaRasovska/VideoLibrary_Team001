@@ -15,6 +15,7 @@ import {
 } from './validations';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
+import Multiselect from './Multiselect';
 
 //data
 const defaultData = {
@@ -41,6 +42,8 @@ const AddVideoForm = (props) => {
   //form states
   const [formData, setFormData] = useState(defaultData);
   const [errorMessage, setErrorMessage] = useState(defaultData);
+
+  //Validations
 
   const validateForm = () => {
     let isValid = true;
@@ -105,7 +108,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, name: e.target.value });
                   setErrorMessage({ ...errorMessage, name: '' });
                 }}
-              ></Input>
+              />
             </label>
             <label>
               Název videa:
@@ -117,7 +120,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, title: e.target.value });
                   setErrorMessage({ ...errorMessage, title: '' });
                 }}
-              ></Input>
+              />
             </label>
             <label>
               Délka videa:
@@ -129,51 +132,12 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, duration: e.target.value });
                   setErrorMessage({ ...errorMessage, duration: '' });
                 }}
-              ></Input>
+              />
               minut
             </label>
             <label>
               Vyber odpovídající žánry:
-              <div>
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      genre: 'pop',
-                    });
-                  }}
-                />
-                <label>Pop</label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      genre: 'rock',
-                    });
-                  }}
-                />
-                <label>Rock</label>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <label>Opera</label>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <label>Hip-hop</label>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <label>Metal</label>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <label>Jiné</label>
-              </div>
+              <Multiselect />
             </label>
             <label>
               Popis:
@@ -184,7 +148,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, description: e.target.value });
                   setErrorMessage({ ...errorMessage, description: '' });
                 }}
-              ></Textarea>
+              />
             </label>
             <label>
               Link na video:
@@ -196,7 +160,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, url: e.target.value });
                   setErrorMessage({ ...errorMessage, url: '' });
                 }}
-              ></Input>
+              />
             </label>
             <label>
               Link na obrázek:
@@ -207,7 +171,7 @@ const AddVideoForm = (props) => {
                   setFormData({ ...formData, picture: e.target.value });
                   setErrorMessage({ ...errorMessage, picture: '' });
                 }}
-              ></Input>
+              />
             </label>
           </form>
         </Modal.Body>
