@@ -1,11 +1,21 @@
 import React from 'react';
 import '../App.css';
 import { Modal } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 import videoData from '../data/videoData';
+import {
+  nameValidation,
+  titleValidation,
+  requiredValidation,
+  descriptionValidation,
+  durationValidation,
+} from './validations';
+import { Input } from './Input';
+import { Textarea } from './Textarea';
+import Multiselect from './Multiselect';
 
 //data
 const defaultData = {
@@ -16,7 +26,11 @@ const defaultData = {
   description: '',
   genre: '',
   url: '',
+  picture: '',
 };
+
+export let newVideoData = [];
+export let newFormState = false;
 
 const AddVideoForm = (props) => {
   //modal states
@@ -27,19 +41,54 @@ const AddVideoForm = (props) => {
 
   //form states
   const [formData, setFormData] = useState(defaultData);
-  const [formFilled, setFormFilled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(defaultData);
 
-  /*useEffect(() => {
-    return <VideoList videoList={videoData} />;
-  }, [formFilled]);*/
+  //Validations
+
+  const validateForm = () => {
+    let isValid = true;
+    if (nameValidation(formData.name) !== null) {
+      isValid = false;
+    }
+    if (titleValidation(formData.title) !== null) {
+      isValid = false;
+    }
+    if (durationValidation(formData.duration) !== null) {
+      isValid = false;
+    }
+    if (descriptionValidation(formData.description) !== null) {
+      isValid = false;
+    }
+    if (requiredValidation(formData.genre) !== null) {
+      isValid = false;
+    }
+    if (requiredValidation(formData.url) !== null) {
+      isValid = false;
+    }
+    if (requiredValidation(formData.picture) !== null) {
+      isValid = false;
+    }
+
+    setErrorMessage({
+      name: nameValidation(formData.name),
+      title: titleValidation(formData.title),
+      duration: durationValidation(formData.duration),
+      genre: requiredValidation(formData.genre),
+      description: descriptionValidation(formData.description),
+      url: requiredValidation(formData.url),
+      picture: requiredValidation(formData.picture),
+    });
+    return isValid;
+  };
 
   const handleSubmit = async () => {
-    videoData.push(formData);
-    setFormFilled(true);
-    handleCloseModal();
-    console.log(formData)
-    console.log(formFilled);
-    console.log(videoData);
+    if (validateForm() === true) {
+      videoData.push(formData);
+      setFormData(defaultData);
+      handleCloseModal();
+      newVideoData = videoData;
+      newFormState = true;
+    }
   };
   return (
     <>
@@ -51,62 +100,78 @@ const AddVideoForm = (props) => {
           <form className="addVideoForm">
             <label>
               Interpret:
-              <input
+              <Input
                 type="text"
+                validationMessage={nameValidation(formData.name)}
+                errorMessage={errorMessage.name}
                 onChange={(e) => {
                   setFormData({ ...formData, name: e.target.value });
+                  setErrorMessage({ ...errorMessage, name: '' });
                 }}
-              ></input>
+              />
             </label>
             <label>
               Název videa:
-              <input
+              <Input
                 type="text"
+                validationMessage={titleValidation(formData.title)}
+                errorMessage={errorMessage.title}
                 onChange={(e) => {
                   setFormData({ ...formData, title: e.target.value });
+                  setErrorMessage({ ...errorMessage, title: '' });
                 }}
-              ></input>
+              />
             </label>
             <label>
               Délka videa:
-              <input
+              <Input
                 type="number"
+                validationMessage={durationValidation(formData.duration)}
+                errorMessage={errorMessage.duration}
                 onChange={(e) => {
                   setFormData({ ...formData, duration: e.target.value });
+                  setErrorMessage({ ...errorMessage, duration: '' });
                 }}
-              ></input>
+              />
+              minut
             </label>
             <label>
-              Žánr:
-              <select
-                onChange={(e) => {
-                  setFormData({ ...formData, genre: e.target.value });
-                }}
-              >
-                <option value="default">Vyberte...</option>
-                <option value="pop">Pop</option>
-                <option value="rock">Rock</option>
-                <option value="Opera">Opera</option>
-                <option value="hip-hop">Hip-hop</option>
-              </select>
+              Vyber odpovídající žánry:
+              <Multiselect />
             </label>
             <label>
               Popis:
-              <input
-                type="text"
+              <Textarea
+                validationMessage={descriptionValidation(formData.description)}
+                errorMessage={errorMessage.description}
                 onChange={(e) => {
                   setFormData({ ...formData, description: e.target.value });
+                  setErrorMessage({ ...errorMessage, description: '' });
                 }}
-              ></input>
+              />
             </label>
             <label>
               Link na video:
-              <input
+              <Input
                 type="text"
+                validationMessage={requiredValidation(formData.url)}
+                errorMessage={errorMessage.url}
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
+                  setErrorMessage({ ...errorMessage, url: '' });
                 }}
-              ></input>
+              />
+            </label>
+            <label>
+              Link na obrázek:
+              <Input
+                validationMessage={requiredValidation(formData.picture)}
+                errorMessage={errorMessage.picture}
+                onChange={(e) => {
+                  setFormData({ ...formData, picture: e.target.value });
+                  setErrorMessage({ ...errorMessage, picture: '' });
+                }}
+              />
             </label>
           </form>
         </Modal.Body>

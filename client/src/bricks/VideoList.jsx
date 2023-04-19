@@ -1,7 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import VideoGridList from './VideoGridList';
 import VideoTableList from './VideoTableList';
 import AddVideoForm from './AddVideoForm';
+
+import { newFormState } from './AddVideoForm';
+import { newVideoData } from './AddVideoForm';
 
 //styling bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,6 +18,12 @@ const VideoList = (props) => {
   const [viewType, setViewType] = useState('grid');
   const isGrid = viewType === 'grid';
   const [searchBy, setSearchBy] = useState('');
+
+  const [gridData, setGridData] = useState('');
+
+  useEffect(() => {
+    setGridData(newVideoData);
+  }, [newFormState]);
 
   const filteredVideoList = useMemo(() => {
     return props.videoList.filter((item) => {
@@ -74,12 +83,19 @@ const VideoList = (props) => {
           </div>
         </div>
       </Navbar>
-      <div className='grid' >
-      {isGrid ? (
-        <VideoGridList videoList={filteredVideoList} />
-      ) : (
-        <VideoTableList videoList={filteredVideoList} />
-      )}</div>
+      <div className="grid">
+        {isGrid ? (
+          newFormState ? (
+            <VideoGridList videoList={gridData} />
+          ) : (
+            <VideoGridList videoList={filteredVideoList} />
+          )
+        ) : newFormState ? (
+          <VideoTableList videoList={gridData} />
+        ) : (
+          <VideoTableList videoList={filteredVideoList} />
+        )}
+      </div>
     </div>
   );
 };

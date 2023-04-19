@@ -5,9 +5,10 @@ const videoData = [
     title: 'Halo',
     duration: 2.25,
     description: 'very popular song from Beyonce',
-    genre: 'latin',
+    genre: ['pop', 'latin'],
     url: 'https://www.youtube.com/jakfshkha564ejrkhs465',
-    picture: 'https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png',
+    picture:
+      'https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png',
   },
   {
     id: '0002',
@@ -27,11 +28,12 @@ const videoData = [
     description: 'Lets dance on Waka waka song.',
     genre: 'pop',
     url: 'https://www.youtube.com/jakfshkha564ejrkhs465',
-    picture: 'https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg',
+    picture:
+      'https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg',
   },
   {
     id: '0004',
-    name: 'Michael Jackson',
+    name: 'M. Jackson',
     title: 'Billie Jean',
     duration: 2.25,
     description: 'Michael is the best!',
