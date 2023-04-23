@@ -27,7 +27,6 @@ const defaultData = {
   picture: '',
 };
 
-export let newEntry = false;
 export let newData = '';
 
 const AddVideoForm = (props) => {
@@ -81,10 +80,9 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      newData = [...props.videoList, formData];
+      props.handleNewData([...props.videoList, formData]);
       setFormData(defaultData);
       handleCloseModal();
-      newEntry = true;
       console.log(newData);
     }
   };
