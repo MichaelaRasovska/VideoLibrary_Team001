@@ -1,27 +1,22 @@
 const path = require("path");
 const Ajv = require("ajv").default;
-const VideoDao = require("../../dao/video-dao")
-let dao = new VideoDao(
+const addFormats = require("ajv-formats")
+const ajv = new Ajv();
+addFormats(ajv);
+const VideoDao = require("../../dao/video-dao");
+const GenreDao = require("../../dao/genre-dao");
+const schema = require("../../validation/videoSchema")
+let videoDao = new VideoDao(
     path.join(__dirname,"..","..","storage","videos.json")
 );
 
-const schema = {
-    type: "object",
-    properties: {
-        name: {type: "string", minLength: 1},
-        title: {type: "string", minLength: 1},
-        duration: {type: "number", multipleOf: 1, minimum: 1},
-        description: {type: "string", maxLength: 1000},
-        genres: {type: "array", minItems: 1, uniqueItems: true},
-        url: {type: "string"},
-        picture: {type: "string"}
-    },
-    required: ["name", "title", "duration", "genres", "url", "picture"]
-}
+let genreDao = new GenreDao(
+    path.join(__dirname,"..","..","storage","genres.json")
+);
 
 async function CreateAbl(req, res){
     // TODO Logging
-    const ajv = new Ajv();
+
     if(!ajv.validate(schema, req.body)){
         res.status(400).json({
             message: `Invalid data`,
@@ -33,7 +28,7 @@ async function CreateAbl(req, res){
 
     let video = req.body;
 
-    if(await dao.existsByName(video.name)){
+    if(await videoDao.existsByName(video.name)){
         res.status(400).json({
             message: `Video item with name ${video.name} already exists`
         });
@@ -41,9 +36,15 @@ async function CreateAbl(req, res){
         return;
     }
 
-    // TODO Validate that genres assigned to a video exist
+    if(!(await genreDao.allExist(video.genres))){
+        res.status(400).json({
+           message: `All selected genres must exist`
+        });
 
-    let createdVideo = await dao.create(video);
+        return;
+    }
+
+    let createdVideo = await videoDao.create(video);
 
     res.status(201).json(createdVideo);
 }

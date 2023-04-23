@@ -7,12 +7,12 @@ let dao = new GenreDao(
 async function GetOneAbl(req, res){
     // TODO: validator for req params
     if (!req.params.id){
-        res.status(400).json({"message": "Id of a genre must be present"});
+        res.status(400).json({message: "Id of a genre must be present"});
     }
 
     let genre = await dao.getOne(req.params.id);
     if(!genre){
-        res.status(404).json({"message": `Genre with id ${req.params.id} not found`});
+        res.status(404).json({message: `Genre with id ${req.params.id} not found`});
         return;
     }
 
