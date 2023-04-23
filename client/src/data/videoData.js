@@ -1,4 +1,4 @@
-const videoData = [
+let videoData = [
   {
     id: '0001',
     name: 'Beyonce',

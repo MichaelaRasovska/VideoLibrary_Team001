@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
-import videoData from '../data/videoData';
 import {
   nameValidation,
   titleValidation,
@@ -15,7 +14,6 @@ import {
 } from './validations';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
-import Multiselect from './Multiselect';
 
 //data
 const defaultData = {
@@ -29,8 +27,8 @@ const defaultData = {
   picture: '',
 };
 
-export let newVideoData = [];
-export let newFormState = false;
+export let newEntry = false;
+export let newData = '';
 
 const AddVideoForm = (props) => {
   //modal states
@@ -83,11 +81,11 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      videoData.push(formData);
+      newData = [...props.videoList, formData];
       setFormData(defaultData);
       handleCloseModal();
-      newVideoData = videoData;
-      newFormState = true;
+      newEntry = true;
+      console.log(newData);
     }
   };
   return (
@@ -137,7 +135,18 @@ const AddVideoForm = (props) => {
             </label>
             <label>
               Vyber odpovídající žánry:
-              <Multiselect />
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      genre: 'pop',
+                    });
+                  }}
+                />
+                <label>Pop</label>
+              </div>
             </label>
             <label>
               Popis:

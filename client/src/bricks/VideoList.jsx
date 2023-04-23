@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import VideoGridList from './VideoGridList';
 import VideoTableList from './VideoTableList';
 import AddVideoForm from './AddVideoForm';
-
-import { newFormState } from './AddVideoForm';
-import { newVideoData } from './AddVideoForm';
 
 //styling bootstrap
 import Navbar from 'react-bootstrap/Navbar';
@@ -19,21 +16,12 @@ const VideoList = (props) => {
   const isGrid = viewType === 'grid';
   const [searchBy, setSearchBy] = useState('');
 
-  const [gridData, setGridData] = useState('');
-
-  useEffect(() => {
-    setGridData(newVideoData);
-  }, [newFormState]);
-
-  const filteredVideoList = useMemo(() => {
-    return props.videoList.filter((item) => {
-      return (
-        item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
-        item.genre.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
-        item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
-      );
-    });
-  }, [searchBy, props.videoList]);
+  const filteredVideoList = props.videoList.filter((item) => {
+    return (
+      item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
+      item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
+    );
+  });
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -78,20 +66,14 @@ const VideoList = (props) => {
                 <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
                 {isGrid ? 'Tabulka' : 'Grid'}
               </Button>
-              <AddVideoForm></AddVideoForm>
+              <AddVideoForm videoList={props.videoList} />
             </Form>
           </div>
         </div>
       </Navbar>
       <div className="grid">
         {isGrid ? (
-          newFormState ? (
-            <VideoGridList videoList={gridData} />
-          ) : (
-            <VideoGridList videoList={filteredVideoList} />
-          )
-        ) : newFormState ? (
-          <VideoTableList videoList={gridData} />
+          <VideoGridList videoList={filteredVideoList} />
         ) : (
           <VideoTableList videoList={filteredVideoList} />
         )}
