@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import VideoGridList from './VideoGridList';
 import VideoTableList from './VideoTableList';
 import AddVideoForm from './AddVideoForm';
@@ -16,12 +16,14 @@ const VideoList = (props) => {
   const isGrid = viewType === 'grid';
   const [searchBy, setSearchBy] = useState('');
 
-  const filteredVideoList = props.videoList.filter((item) => {
-    return (
-      item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
-      item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
-    );
-  });
+  const filteredVideoList = useMemo(() => {
+    return props.videoList.filter((item) => {
+      return (
+        item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
+        item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
+      );
+    });
+  }, [searchBy, props.videoList]);
 
   const handleSearch = (event) => {
     event.preventDefault();

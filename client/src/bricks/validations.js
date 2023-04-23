@@ -41,6 +41,16 @@ export const descriptionValidation = (value) => {
   return null;
 };
 
+export const pictureValidation = (picture) => {
+  if (/^(https|http)?:\/\/.*\.(png|jpg)$/.test(picture)) {
+    return null;
+  }
+  if (picture.trim() === '') {
+    return `URL obrázku je povinné`;
+  }
+  return 'Vložte prosím URL odkazující přímo na .jpg nebo .png soubor';
+};
+
 export const requiredValidation = (value) => {
   if (value.trim() === '') {
     return 'Musí být vyplněno';

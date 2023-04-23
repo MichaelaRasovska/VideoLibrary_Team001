@@ -11,6 +11,7 @@ import {
   requiredValidation,
   descriptionValidation,
   durationValidation,
+  pictureValidation,
 } from './validations';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
@@ -62,7 +63,7 @@ const AddVideoForm = (props) => {
     if (requiredValidation(formData.url) !== null) {
       isValid = false;
     }
-    if (requiredValidation(formData.picture) !== null) {
+    if (pictureValidation(formData.picture) !== null) {
       isValid = false;
     }
 
@@ -73,7 +74,7 @@ const AddVideoForm = (props) => {
       genre: requiredValidation(formData.genre),
       description: descriptionValidation(formData.description),
       url: requiredValidation(formData.url),
-      picture: requiredValidation(formData.picture),
+      picture: pictureValidation(formData.picture),
     });
     return isValid;
   };
@@ -172,7 +173,7 @@ const AddVideoForm = (props) => {
             <label>
               Link na obrázek:
               <Input
-                validationMessage={requiredValidation(formData.picture)}
+                validationMessage={pictureValidation(formData.picture)}
                 errorMessage={errorMessage.picture}
                 onChange={(e) => {
                   setFormData({ ...formData, picture: e.target.value });

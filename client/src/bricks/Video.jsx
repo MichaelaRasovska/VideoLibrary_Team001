@@ -16,7 +16,9 @@ const Video = (props) => {
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item>Žánr: {props.video.genre + ' '}</ListGroup.Item>
-          <ListGroup.Item>Délka trvání: {props.video.duration} </ListGroup.Item>
+          <ListGroup.Item>
+            Délka trvání: {props.video.duration} minut{' '}
+          </ListGroup.Item>
           <ListGroup.Item>
             <VideoDetailsList key={props.video.id} video={props.video} />
           </ListGroup.Item>
