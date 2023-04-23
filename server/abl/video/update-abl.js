@@ -1,29 +1,34 @@
 const path = require("path");
 const Ajv = require("ajv").default;
-const VideoDao = require("../../dao/video-dao")
-let dao = new VideoDao(
+const addFormats = require("ajv-formats")
+const ajv = new Ajv();
+addFormats(ajv);
+const videoSchema = require("../../validation/videoSchema");
+const reqParamsSchema = require("../../validation/reqParamSchema");
+const VideoDao = require("../../dao/video-dao");
+const GenreDao = require("../../dao/genre-dao");
+let videoDao = new VideoDao(
     path.join(__dirname,"..","..","storage","videos.json")
 );
+let genreDao = new GenreDao(
+    path.join(__dirname,"..","..","storage","genres.json")
+);
 
-// TODO: probably move to shared directory for schemas
-const schema = {
-    type: "object",
-    properties: {
-        name: {type: "string", minLength: 1},
-        title: {type: "string", minLength: 1},
-        duration: {type: "number", multipleOf: 1, minimum: 1},
-        description: {type: "string", maxLength: 1000},
-        genres: {type: "array", minItems: 1, uniqueItems: true},
-        url: {type: "string"},
-        picture: {type: "string"}
-    },
-    required: ["name", "title", "duration", "genres", "url", "picture"]
-}
+
 
 async function UpdateAbl(req, res){
     // TODO Logging
-    const ajv = new Ajv();
-    if(!ajv.validate(schema, req.body)){
+
+    if (!ajv.validate(reqParamsSchema, req.params)){
+        res.status(400).json({
+            message: "Invalid params",
+            reason: ajv.errors
+        });
+
+        return;
+    }
+
+    if(!ajv.validate(videoSchema, req.body)){
         res.status(400).json({
             message: `Invalid data`,
             reason: ajv.errors
@@ -32,11 +37,20 @@ async function UpdateAbl(req, res){
         return;
     }
 
-    let video = req.body;
-    video.id = req.params.id;
-    // TODO Validate that genres assigned to a video exist
+    let video = {
+        ...req.body,
+        id: req.params.id
+    };
 
-    let updatedVideo = await dao.update(video);
+    if(!(await genreDao.allExist(video.genres))){
+        res.status(400).json({
+            message: `All selected genres must exist`
+        });
+
+        return;
+    }
+
+    let updatedVideo = await videoDao.update(video);
 
     if(!updatedVideo){
         res.status(404).json({
@@ -46,7 +60,7 @@ async function UpdateAbl(req, res){
         return;
     }
 
-    res.status(201).json(updatedVideo);
+    res.json(updatedVideo);
 }
 
 module.exports = UpdateAbl;

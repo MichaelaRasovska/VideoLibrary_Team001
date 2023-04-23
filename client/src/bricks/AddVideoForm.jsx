@@ -203,7 +203,7 @@ const AddVideoForm = (props) => {
         type="submit"
         onClick={handleShowModal}
       >
-        <Icon size={1} path={mdiPlus} color="white" /> Vložit video
+        <Icon size={1} path={mdiPlus} color="white" /> Nové video
       </Button>
     </>
   );

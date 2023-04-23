@@ -13,9 +13,16 @@ class GenreDao{
     }
 
     async getOne(id){
-        let genres = await loadAll(this.genreStoragePath)
+        let genres = await loadAll(this.genreStoragePath);
 
         return genres.find(x => x.id === id);
+    }
+
+    async allExist(genreIds){
+        let genres = await loadAll(this.genreStoragePath);
+        let allGenresIds = genres.map(x => x.id);
+
+        return genreIds.every(id => allGenresIds.includes(id));
     }
 }
 
