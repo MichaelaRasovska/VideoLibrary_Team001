@@ -1,13 +1,22 @@
 const path = require("path");
-
+const Ajv = require("ajv").default;
+const addFormats = require("ajv-formats")
+const ajv = new Ajv();
+addFormats(ajv);
 const GenreDao = require("../../dao/genre-dao")
+const schema = require("../../validation/reqParamSchema");
 let dao = new GenreDao(
     path.join(__dirname,"..","..","storage","genres.json")
 );
 async function GetOneAbl(req, res){
-    // TODO: validator for req params
-    if (!req.params.id){
-        res.status(400).json({message: "Id of a genre must be present"});
+
+    if (!ajv.validate(schema, req.params)){
+        res.status(400).json({
+            message: "Invalid params",
+            reason: ajv.errors
+        });
+
+        return;
     }
 
     let genre = await dao.getOne(req.params.id);

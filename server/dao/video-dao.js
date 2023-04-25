@@ -56,6 +56,12 @@ class VideoDao{
         return true;
     }
 
+    async anyVideoContainsGenre(genreId){
+        let videos = await loadAll(this.videoStoragePath);
+
+        return videos.some(x => x.genres.includes(genreId));
+    }
+
     async existsByName(name){
         let videos = await loadAll(this.videoStoragePath);
 
