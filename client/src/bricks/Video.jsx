@@ -15,7 +15,12 @@ const Video = (props) => {
           <Card.Text>{props.video.description}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>Žánr: {props.video.genre + ' '}</ListGroup.Item>
+          <ListGroup.Item>
+            Žánr:
+            {props.video.genres.map((genre) => {
+              return genre.label + ', ';
+            })}
+          </ListGroup.Item>
           <ListGroup.Item>
             Délka trvání: {props.video.duration} minut{' '}
           </ListGroup.Item>

@@ -30,8 +30,12 @@ const VideoDetailsList = (props) => {
               <b>{props.video.duration}</b>
             </div>
             <div>
-              <span className="text-muted">Žánr: </span>
-              <b>{props.video.genre}</b>
+              <span className="text-muted">Žánry: </span>
+              <b>
+                {props.video.genres.map((genre) => {
+                  return genre.label + ', ';
+                })}
+              </b>
             </div>
             <div>
               <span className="text-muted">Popis videa: </span>

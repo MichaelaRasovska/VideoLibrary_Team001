@@ -8,7 +8,9 @@ function VideoTableList(props) {
         <tr>
           <th>ID</th>
           <th>Interpret</th>
-          <th>Žánr</th>
+          <th>Název</th>
+          <th>Délka trvání</th>
+          <th>Žánry</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +19,13 @@ function VideoTableList(props) {
             <tr key={video.id}>
               <td>{video.id}</td>
               <td>{video.name}</td>
-              <td>{video.genre}</td>
+              <td>{video.title}</td>
+              <td>{video.duration}</td>
+              <td>
+                {video.genres.map((genre) => {
+                  return genre.label + ', ';
+                })}
+              </td>
             </tr>
           );
         })}

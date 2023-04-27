@@ -15,6 +15,7 @@ import {
 } from './validations';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
+import { MultiSelect } from 'react-multi-select-component';
 
 //data
 const defaultData = {
@@ -23,12 +24,24 @@ const defaultData = {
   title: '',
   duration: '',
   description: '',
-  genre: '',
+  genres: [],
   url: '',
   picture: '',
 };
 
-export let newData = '';
+//Multiselect
+
+const genres = [
+  { label: 'Pop', value: 'pop' },
+  { label: 'Rock', value: 'rock' },
+  { label: 'Elektro', value: 'elektro' },
+  { label: 'Metal', value: 'metal' },
+  { label: 'Jazz', value: 'jazz' },
+  { label: 'Hip Hop', value: 'hip-hop' },
+  { label: 'Folk', value: 'folk' },
+  { label: 'Opera', value: 'opera' },
+  { label: 'Jiné', value: 'other' },
+];
 
 const AddVideoForm = (props) => {
   //modal states
@@ -57,9 +70,9 @@ const AddVideoForm = (props) => {
     if (descriptionValidation(formData.description) !== null) {
       isValid = false;
     }
-    if (requiredValidation(formData.genre) !== null) {
+    /*if (requiredValidation(formData.genre) !== null) {
       isValid = false;
-    }
+    }*/
     if (requiredValidation(formData.url) !== null) {
       isValid = false;
     }
@@ -71,7 +84,7 @@ const AddVideoForm = (props) => {
       name: nameValidation(formData.name),
       title: titleValidation(formData.title),
       duration: durationValidation(formData.duration),
-      genre: requiredValidation(formData.genre),
+      //genre: requiredValidation(formData.genre),
       description: descriptionValidation(formData.description),
       url: requiredValidation(formData.url),
       picture: pictureValidation(formData.picture),
@@ -82,11 +95,15 @@ const AddVideoForm = (props) => {
   const handleSubmit = async () => {
     if (validateForm() === true) {
       props.handleNewData([...props.videoList, formData]);
+      console.log(formData);
       setFormData(defaultData);
       handleCloseModal();
-      console.log(newData);
     }
   };
+
+  //multiselect
+  const [selected, setSelected] = useState([]);
+
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -135,16 +152,25 @@ const AddVideoForm = (props) => {
             <label>
               Vyber odpovídající žánry:
               <div>
-                <input
-                  type="checkbox"
+                <pre>
+                  {selected.map((genre) => {
+                    return genre.label + ',';
+                  })}
+                </pre>
+                <MultiSelect
+                  options={genres}
+                  value={selected}
                   onChange={(e) => {
+                    setSelected(e);
                     setFormData({
                       ...formData,
-                      genre: 'pop',
+                      genres: selected.map((genre) => {
+                        return genre;
+                      }),
                     });
                   }}
+                  labelledBy="Vyber"
                 />
-                <label>Pop</label>
               </div>
             </label>
             <label>
