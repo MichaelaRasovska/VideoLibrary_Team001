@@ -164,9 +164,7 @@ const AddVideoForm = (props) => {
                     setSelected(e);
                     setFormData({
                       ...formData,
-                      genres: selected.map((genre) => {
-                        return genre;
-                      }),
+                      genres: selected,
                     });
                   }}
                   labelledBy="Vyber"
