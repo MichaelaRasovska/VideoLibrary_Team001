@@ -18,7 +18,7 @@ const Video = (props) => {
           <ListGroup.Item>
             Žánr:
             {props.video.genres.map((genre) => {
-              return genre.label + ', ';
+              return genre + ', ';
             })}
           </ListGroup.Item>
           <ListGroup.Item>

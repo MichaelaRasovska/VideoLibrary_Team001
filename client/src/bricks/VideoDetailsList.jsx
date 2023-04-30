@@ -33,7 +33,7 @@ const VideoDetailsList = (props) => {
               <span className="text-muted">Žánry: </span>
               <b>
                 {props.video.genres.map((genre) => {
-                  return genre.label + ', ';
+                  return genre + ', ';
                 })}
               </b>
             </div>

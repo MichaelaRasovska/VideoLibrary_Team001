@@ -27,6 +27,7 @@ function App() {
 
   const videoData = videosLoadCall.data;
 
+
   //re render based on new data
   const [newData, setNewData] = useState([]);
   const [newEntry, setNewEntry] = useState(false);
