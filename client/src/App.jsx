@@ -26,6 +26,7 @@ function App() {
   }, []);
 
   const videoData = videosLoadCall.data;
+  console.log(videoData);
 
   function getChild() {
     switch (videosLoadCall.state) {
