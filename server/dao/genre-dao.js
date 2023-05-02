@@ -13,6 +13,12 @@ class GenreDao{
         return await loadAll(this.genreStoragePath);
     }
 
+    async getByIds(ids){
+        let genres = await loadAll(this.genreStoragePath);
+        console.log(ids);
+        return genres.filter(x => ids.includes(x.id));
+    }
+
     async getOne(id){
         let genres = await loadAll(this.genreStoragePath);
 
