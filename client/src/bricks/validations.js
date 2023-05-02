@@ -2,8 +2,8 @@ export const nameValidation = (name) => {
   if (name.trim() === '') {
     return `Jméno interpreta je povinné`;
   }
-  if (name.trim().length < 3) {
-    return `Jméno interpreta musí mít alespoň tři znaky`;
+  if (name.trim().length < 2) {
+    return `Jméno interpreta musí mít alespoň dva znaky`;
   }
   return null;
 };
@@ -12,8 +12,8 @@ export const titleValidation = (title) => {
   if (title.trim() === '') {
     return `Název videa je povinný`;
   }
-  if (title.trim().length < 3) {
-    return `Název videa musí mít alespoň tři znaky`;
+  if (title.trim().length < 2) {
+    return `Název videa musí mít alespoň dva znaky`;
   }
   return null;
 };
@@ -39,6 +39,16 @@ export const descriptionValidation = (value) => {
     return `Maximální délka popisu je 200 znaků.`;
   }
   return null;
+};
+
+export const linkValidation = (link) => {
+  if (/^(https|http)?:\/\/.*\.(com|cz)\/[a-zA-Z0-9]+/.test(link)) {
+    return null;
+  }
+  if (link.trim() === '') {
+    return `Odkaz na video je povinný`;
+  }
+  return 'Vložte prosím URL odkazující přímo na video. URL musí obsahovat "http:// nebo https://".';
 };
 
 export const pictureValidation = (picture) => {

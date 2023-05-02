@@ -7,7 +7,7 @@ import Icon from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
 
 function App() {
-  //server call
+  //server call for videodata
   const [videosLoadCall, setVideosLoadCall] = useState({
     state: 'pending',
   });
@@ -27,16 +27,6 @@ function App() {
 
   const videoData = videosLoadCall.data;
 
-
-  //re render based on new data
-  const [newData, setNewData] = useState([]);
-  const [newEntry, setNewEntry] = useState(false);
-
-  const handleNewData = (data) => {
-    setNewData(data);
-    setNewEntry(true);
-  };
-
   function getChild() {
     switch (videosLoadCall.state) {
       case 'pending':
@@ -49,11 +39,7 @@ function App() {
         return (
           <>
             <Header />
-            {newEntry ? (
-              <VideoList videoList={newData} handleNewData={handleNewData} />
-            ) : (
-              <VideoList videoList={videoData} handleNewData={handleNewData} />
-            )}
+            <VideoList videoList={videoData} />
           </>
         );
       case 'error':

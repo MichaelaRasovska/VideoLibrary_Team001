@@ -8,9 +8,9 @@ import { mdiPlus } from '@mdi/js';
 import {
   nameValidation,
   titleValidation,
-  requiredValidation,
   descriptionValidation,
   durationValidation,
+  linkValidation,
   pictureValidation,
 } from './validations';
 import { Input } from './Input';
@@ -19,7 +19,6 @@ import { MultiSelect } from 'react-multi-select-component';
 
 //data
 const defaultData = {
-  id: '',
   name: '',
   title: '',
   duration: '',
@@ -32,15 +31,15 @@ const defaultData = {
 //Multiselect
 
 const genres = [
-  { label: 'Pop', value: 'pop' },
-  { label: 'Rock', value: 'rock' },
-  { label: 'Elektro', value: 'elektro' },
-  { label: 'Metal', value: 'metal' },
-  { label: 'Jazz', value: 'jazz' },
-  { label: 'Hip Hop', value: 'hip-hop' },
-  { label: 'Folk', value: 'folk' },
-  { label: 'Opera', value: 'opera' },
-  { label: 'Jiné', value: 'other' },
+  { label: 'Pop', value: 'pop', name: 'Pop' },
+  { label: 'Rock', value: 'rock', name: 'Rock' },
+  { label: 'Elektro', value: 'elektro', name: 'Elektro' },
+  { label: 'Metal', value: 'metal', name: 'Metal' },
+  { label: 'Jazz', value: 'jazz', name: 'Jazz' },
+  { label: 'Hip Hop', value: 'hip-hop', name: 'Hip Hop' },
+  { label: 'Folk', value: 'folk', name: 'Folk' },
+  { label: 'Opera', value: 'opera', name: 'Opera' },
+  { label: 'Jiné', value: 'other', name: 'Jiné' },
 ];
 
 const AddVideoForm = (props) => {
@@ -73,7 +72,7 @@ const AddVideoForm = (props) => {
     /*if (requiredValidation(formData.genre) !== null) {
       isValid = false;
     }*/
-    if (requiredValidation(formData.url) !== null) {
+    if (linkValidation(formData.url) !== null) {
       isValid = false;
     }
     if (pictureValidation(formData.picture) !== null) {
@@ -86,7 +85,7 @@ const AddVideoForm = (props) => {
       duration: durationValidation(formData.duration),
       //genre: requiredValidation(formData.genre),
       description: descriptionValidation(formData.description),
-      url: requiredValidation(formData.url),
+      url: linkValidation(formData.url),
       picture: pictureValidation(formData.picture),
     });
     return isValid;
@@ -94,8 +93,21 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      props.handleNewData([...props.videoList, formData]);
       console.log(formData);
+      fetch('http://localhost:3000/videos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          title: formData.title,
+          duration: formData.duration,
+          genres: formData.genres,
+          url: formData.url,
+          picture: formData.picture,
+        }),
+      });
       setFormData(defaultData);
       handleCloseModal();
     }
@@ -152,11 +164,7 @@ const AddVideoForm = (props) => {
             <label>
               Vyber odpovídající žánry:
               <div>
-                <pre>
-                  {selected.map((genre) => {
-                    return genre.label + ',';
-                  })}
-                </pre>
+                <pre>{JSON.stringify(selected)}</pre>
                 <MultiSelect
                   options={genres}
                   value={selected}
@@ -164,7 +172,7 @@ const AddVideoForm = (props) => {
                     setSelected(e);
                     setFormData({
                       ...formData,
-                      genres: selected,
+                      genres: JSON.stringify(selected),
                     });
                   }}
                   labelledBy="Vyber"
@@ -186,7 +194,7 @@ const AddVideoForm = (props) => {
               Link na video:
               <Input
                 type="text"
-                validationMessage={requiredValidation(formData.url)}
+                validationMessage={linkValidation(formData.url)}
                 errorMessage={errorMessage.url}
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
