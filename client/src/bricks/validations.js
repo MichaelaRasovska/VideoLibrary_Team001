@@ -19,7 +19,7 @@ export const titleValidation = (title) => {
 };
 
 export const durationValidation = (duration) => {
-  if (/^[0-59]+.[0-59]/.test(duration)) {
+  if (/^[0-59]/.test(duration)) {
     return null;
   }
   if (duration === '') {
@@ -28,7 +28,7 @@ export const durationValidation = (duration) => {
   if (duration.length < 1) {
     return `Délka videa musí být minimálně 1 min`;
   }
-  return 'Vložte prosím trvání videa s tečkou';
+  return 'Vložte prosím trvání videa.';
 };
 
 export const descriptionValidation = (value) => {

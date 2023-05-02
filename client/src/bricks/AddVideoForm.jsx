@@ -21,7 +21,7 @@ import { MultiSelect } from 'react-multi-select-component';
 const defaultData = {
   name: '',
   title: '',
-  duration: '',
+  duration: 0,
   description: '',
   genres: [],
   url: '',
@@ -33,13 +33,8 @@ const defaultData = {
 const genres = [
   { label: 'Pop', value: 'pop', name: 'Pop' },
   { label: 'Rock', value: 'rock', name: 'Rock' },
-  { label: 'Elektro', value: 'elektro', name: 'Elektro' },
-  { label: 'Metal', value: 'metal', name: 'Metal' },
-  { label: 'Jazz', value: 'jazz', name: 'Jazz' },
-  { label: 'Hip Hop', value: 'hip-hop', name: 'Hip Hop' },
-  { label: 'Folk', value: 'folk', name: 'Folk' },
-  { label: 'Opera', value: 'opera', name: 'Opera' },
-  { label: 'Jiné', value: 'other', name: 'Jiné' },
+  { label: 'Hip hop', value: 'hip-hop', name: 'Hip hop' },
+  { label: 'Dance music', value: 'dance-music', name: 'Dance music' },
 ];
 
 const AddVideoForm = (props) => {
@@ -69,9 +64,6 @@ const AddVideoForm = (props) => {
     if (descriptionValidation(formData.description) !== null) {
       isValid = false;
     }
-    /*if (requiredValidation(formData.genre) !== null) {
-      isValid = false;
-    }*/
     if (linkValidation(formData.url) !== null) {
       isValid = false;
     }
@@ -83,7 +75,6 @@ const AddVideoForm = (props) => {
       name: nameValidation(formData.name),
       title: titleValidation(formData.title),
       duration: durationValidation(formData.duration),
-      //genre: requiredValidation(formData.genre),
       description: descriptionValidation(formData.description),
       url: linkValidation(formData.url),
       picture: pictureValidation(formData.picture),
@@ -103,6 +94,7 @@ const AddVideoForm = (props) => {
           name: formData.name,
           title: formData.title,
           duration: formData.duration,
+          description: formData.description,
           genres: formData.genres,
           url: formData.url,
           picture: formData.picture,
@@ -115,6 +107,14 @@ const AddVideoForm = (props) => {
 
   //multiselect
   const [selected, setSelected] = useState([]);
+
+  const handleGenreChange = (selectedGenres) => {
+    setSelected(selectedGenres);
+    setFormData({
+      ...formData,
+      genres: selectedGenres.map((genre) => genre.value),
+    });
+  };
 
   return (
     <>
@@ -155,7 +155,10 @@ const AddVideoForm = (props) => {
                 validationMessage={durationValidation(formData.duration)}
                 errorMessage={errorMessage.duration}
                 onChange={(e) => {
-                  setFormData({ ...formData, duration: e.target.value });
+                  setFormData({
+                    ...formData,
+                    duration: Number(e.target.value),
+                  });
                   setErrorMessage({ ...errorMessage, duration: '' });
                 }}
               />
@@ -168,13 +171,7 @@ const AddVideoForm = (props) => {
                 <MultiSelect
                   options={genres}
                   value={selected}
-                  onChange={(e) => {
-                    setSelected(e);
-                    setFormData({
-                      ...formData,
-                      genres: JSON.stringify(selected),
-                    });
-                  }}
+                  onChange={handleGenreChange}
                   labelledBy="Vyber"
                 />
               </div>
