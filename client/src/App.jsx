@@ -13,20 +13,42 @@ function App() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/videos`, {
-      method: 'GET',
-    }).then(async (response) => {
-      const responseJson = await response.json();
-      if (response.status >= 400) {
-        setVideosLoadCall({ state: 'error', error: responseJson });
-      } else {
-        setVideosLoadCall({ state: 'success', data: responseJson });
+    async function fetchData(){
+      const videoResponse = await fetch(`http://localhost:3000/videos`, {
+        method: 'GET',
+      });
+      if (videoResponse.status >= 400) {
+        setVideosLoadCall({ state: 'error', error: videoResponse });
+
+        return;
       }
-    });
+
+      const genreResponse = await fetch(`http://localhost:3000/genres`, {
+        method: 'GET',
+      });
+      if (genreResponse.status >= 400) {
+        setVideosLoadCall({ state: 'error', error: genreResponse });
+
+        return;
+      }
+
+      const videoData = await videoResponse.json();
+      const genreData = await genreResponse.json();
+      setVideosLoadCall({
+        state: 'success',
+        videoData: videoData,
+        genreData: genreData
+      });
+    }
+
+    // TODO try catch
+    fetchData()
   }, []);
 
-  const videoData = videosLoadCall.data;
+  const videoData = videosLoadCall.videoData;
+  const genreData = videosLoadCall.genreData;
   console.log(videoData);
+  console.log(genreData);
 
   function getChild() {
     switch (videosLoadCall.state) {
@@ -40,7 +62,7 @@ function App() {
         return (
           <>
             <Header />
-            <VideoList videoList={videoData} />
+            <VideoList videoList={videoData} genreList = {genreData}/>
           </>
         );
       case 'error':

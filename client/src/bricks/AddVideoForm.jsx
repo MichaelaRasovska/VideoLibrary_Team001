@@ -28,15 +28,6 @@ const defaultData = {
   picture: '',
 };
 
-//Multiselect
-
-const genres = [
-  { label: 'Pop', value: 'pop', name: 'Pop' },
-  { label: 'Rock', value: 'rock', name: 'Rock' },
-  { label: 'Hip hop', value: 'hip-hop', name: 'Hip hop' },
-  { label: 'Dance music', value: 'dance-music', name: 'Dance music' },
-];
-
 const AddVideoForm = (props) => {
   //modal states
   const [isModalShown, setShow] = useState(false);
@@ -112,6 +103,7 @@ const AddVideoForm = (props) => {
     setSelected(selectedGenres);
     setFormData({
       ...formData,
+      // TODO map here a genre object that will be appended to form that is sent to BE?
       genres: selectedGenres.map((genre) => genre.value),
     });
   };
@@ -169,7 +161,12 @@ const AddVideoForm = (props) => {
               <div>
                 <pre>{JSON.stringify(selected)}</pre>
                 <MultiSelect
-                  options={genres}
+                  options={props.genreList.map(x => {
+                    return {
+                      ...x,
+                      label: x.name
+                    }
+                  })}
                   value={selected}
                   onChange={handleGenreChange}
                   labelledBy="Vyber"
