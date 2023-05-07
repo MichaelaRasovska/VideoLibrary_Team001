@@ -103,7 +103,6 @@ const AddVideoForm = (props) => {
     setSelected(selectedGenres);
     setFormData({
       ...formData,
-      // TODO map here a genre object that will be appended to form that is sent to BE?
       genres: selectedGenres.map((genre) => genre.value),
     });
   };
@@ -163,7 +162,7 @@ const AddVideoForm = (props) => {
                 <MultiSelect
                   options={props.genreList.map(x => {
                     return {
-                      ...x,
+                      value: x.id,
                       label: x.name
                     }
                   })}

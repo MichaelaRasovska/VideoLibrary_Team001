@@ -7,51 +7,51 @@ import Icon from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
 
 function App() {
-  //server call for videodata
-  const [videosLoadCall, setVideosLoadCall] = useState({
+  //server call for data (videos and genres)
+  const [initialDataLoadCall, setInitialDataLoadCall] = useState({
     state: 'pending',
   });
+  const videoDataUrl = "http://localhost:3000/videos"
+  const genreDataUrl = "http://localhost:3000/genres"
+  async function fetchData(dataUrl){
+    const videoResponse = await fetch(dataUrl, {
+      method: 'GET',
+    });
+    if (videoResponse.status >= 400) {
+      setInitialDataLoadCall({ state: 'error', error: videoResponse });
+
+      return null;
+    }
+
+    return await videoResponse.json();
+  }
 
   useEffect(() => {
-    async function fetchData(){
-      const videoResponse = await fetch(`http://localhost:3000/videos`, {
-        method: 'GET',
-      });
-      if (videoResponse.status >= 400) {
-        setVideosLoadCall({ state: 'error', error: videoResponse });
+    async function fetchInitialData(){
+      const videoData = await fetchData(videoDataUrl);
+      const genreData = await fetchData(genreDataUrl);
 
+      if(!videoData || !genreData){
         return;
       }
 
-      const genreResponse = await fetch(`http://localhost:3000/genres`, {
-        method: 'GET',
-      });
-      if (genreResponse.status >= 400) {
-        setVideosLoadCall({ state: 'error', error: genreResponse });
-
-        return;
-      }
-
-      const videoData = await videoResponse.json();
-      const genreData = await genreResponse.json();
-      setVideosLoadCall({
+      setInitialDataLoadCall({
         state: 'success',
         videoData: videoData,
         genreData: genreData
       });
     }
 
-    // TODO try catch
-    fetchData()
+    fetchInitialData()
   }, []);
 
-  const videoData = videosLoadCall.videoData;
-  const genreData = videosLoadCall.genreData;
+  const videoData = initialDataLoadCall.videoData;
+  const genreData = initialDataLoadCall.genreData;
   console.log(videoData);
   console.log(genreData);
 
   function getChild() {
-    switch (videosLoadCall.state) {
+    switch (initialDataLoadCall.state) {
       case 'pending':
         return (
           <div className={styles.loading}>
@@ -70,7 +70,7 @@ function App() {
           <div className={styles.error}>
             <div>Nepodařilo se načíst data o třídě.</div>
             <br />
-            <pre>{JSON.stringify(videosLoadCall.error, null, 2)}</pre>
+            <pre>{JSON.stringify(initialDataLoadCall.error, null, 2)}</pre>
           </div>
         );
       default:

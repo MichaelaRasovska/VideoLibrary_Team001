@@ -17,9 +17,7 @@ const Video = (props) => {
         <ListGroup className="list-group-flush">
           <ListGroup.Item>
             Žánr:{' '}
-            {props.video.genres.map((genre) => {
-              return genre.name + ', ';
-            })}
+            {props.video.genres.map((genre) => genre.name).join(", ")}
           </ListGroup.Item>
           <ListGroup.Item>
             <VideoDetailsList key={props.video.id} video={props.video} />

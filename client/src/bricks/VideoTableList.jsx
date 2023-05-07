@@ -22,9 +22,7 @@ function VideoTableList(props) {
               <td>{video.title}</td>
               <td>{video.duration}</td>
               <td>
-                {video.genres.map((genre) => {
-                  return genre + ', ';
-                })}
+                {video.genres.map((genre) => genre.name).join(", ")}
               </td>
             </tr>
           );
