@@ -27,6 +27,15 @@ const defaultData = {
 };
 
 const UpdateVideoForm = (props) => {
+  const originalData = {
+    name: props.video.name,
+    title: props.video.title,
+    duration: props.video.duration,
+    description: props.video.description,
+    genres: props.video.genres,
+    url: props.video.url,
+    picture: props.video.picture,
+  };
   //modal states
   const [isModalShown, setShow] = useState(false);
 
@@ -73,19 +82,25 @@ const UpdateVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      fetch('http://localhost:8000/videos', {
-        method: 'POST',
+      fetch(`http://localhost:8000/videos/${props.video.id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          title: formData.title,
-          duration: formData.duration,
-          description: formData.description,
-          genres: formData.genres,
-          url: formData.url,
-          picture: formData.picture,
+          name: formData.name === '' ? originalData.name : formData.name,
+          title: formData.title === '' ? originalData.title : formData.title,
+          duration:
+            formData.duration === 0 ? originalData.duration : formData.duration,
+          description:
+            formData.description === ''
+              ? originalData.description
+              : formData.description,
+          genres:
+            formData.genres === [] ? originalData.genres : formData.genres,
+          url: formData.url === '' ? originalData.url : formData.url,
+          picture:
+            formData.picture === 0 ? originalData.picture : formData.picture,
         }),
       });
       props.handleReload();
@@ -105,11 +120,6 @@ const UpdateVideoForm = (props) => {
     });
   };
 
-  /*const handleClick = () => {
-    handleShowModal();
-    props.closeDetailModal();
-  };*/
-
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -121,7 +131,7 @@ const UpdateVideoForm = (props) => {
             <Input
               title="Interpret:"
               type="text"
-              value={props.video.name}
+              defaultValue={props.video.name}
               validationMessage={nameValidation(formData.name)}
               errorMessage={errorMessage.name}
               onChange={(e) => {
@@ -132,7 +142,7 @@ const UpdateVideoForm = (props) => {
             <Input
               title="Název videa:"
               type="text"
-              value={props.video.title}
+              defaultValue={props.video.title}
               validationMessage={titleValidation(formData.title)}
               errorMessage={errorMessage.title}
               onChange={(e) => {
@@ -143,7 +153,7 @@ const UpdateVideoForm = (props) => {
             <Input
               title="Délka videa:"
               type="number"
-              value={props.video.duration}
+              defaultValue={props.video.duration}
               validationMessage={durationValidation(formData.duration)}
               errorMessage={errorMessage.duration}
               onChange={(e) => {
@@ -179,7 +189,7 @@ const UpdateVideoForm = (props) => {
             </label>
             <Textarea
               title="Popis videa:"
-              value={props.video.description}
+              defaultValue={props.video.description}
               validationMessage={descriptionValidation(formData.description)}
               errorMessage={errorMessage.description}
               onChange={(e) => {
@@ -190,7 +200,7 @@ const UpdateVideoForm = (props) => {
             <Input
               title="Link na video:"
               type="text"
-              value={props.video.url}
+              defaultValue={props.video.url}
               validationMessage={linkValidation(formData.url)}
               errorMessage={errorMessage.url}
               onChange={(e) => {
@@ -200,7 +210,7 @@ const UpdateVideoForm = (props) => {
             />
             <Input
               title="Link na obrázek:"
-              value={props.video.picture}
+              defaultValue={props.video.picture}
               validationMessage={pictureValidation(formData.picture)}
               errorMessage={errorMessage.picture}
               onChange={(e) => {

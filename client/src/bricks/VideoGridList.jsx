@@ -9,7 +9,7 @@ const VideoGridList = (props) => {
         video={video}
         genreData={props.genreData}
         handleReload={props.handleReload}
-      />
+        />
     );
   });
 };

@@ -83,7 +83,7 @@ const VideoList = (props) => {
             videoData={filteredVideoData}
             genreData={props.genreData}
             handleReload={props.handleReload}
-          />
+            />
         ) : (
           <VideoTableList videoData={filteredVideoData} />
         )}

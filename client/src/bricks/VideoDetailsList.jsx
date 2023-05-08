@@ -8,19 +8,6 @@ const VideoDetailsList = (props) => {
   const handleShowModal = () => setShow(true);
   const handleCloseModal = () => setShow(false);
 
-  //close detail modal when update modal is open
-  /*
-  const [updateModalShown, setUpdateModalShown] = useState(false);
-
-  const closeDetailModal = () => {
-    setUpdateModalShown(true);
-  };
-
-  useEffect(() => {
-    handleCloseModal();
-  }, [updateModalShown]);
-  */
-
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -62,7 +49,6 @@ const VideoDetailsList = (props) => {
             video={props.video}
             genreData={props.genreData}
             handleReload={props.handleReload}
-            /*closeDetailModal={closeDetailModal}*/
           />
         </Modal.Footer>
       </Modal>
