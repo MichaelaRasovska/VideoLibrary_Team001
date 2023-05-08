@@ -159,7 +159,7 @@ const AddVideoForm = (props) => {
               Vyber odpovídající žánry:
               <div>
                 <MultiSelect
-                  options={props.genreList.map((x) => {
+                  options={props.genreData.map((x) => {
                     return {
                       value: x.id,
                       label: x.name,

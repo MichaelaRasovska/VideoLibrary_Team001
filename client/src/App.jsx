@@ -7,6 +7,7 @@ import Icon from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
 
 function App() {
+  //reload data if database changed
   const [databaseChanged, setDatabaseChanged] = useState(false);
 
   const handleReload = () => {
@@ -54,8 +55,6 @@ function App() {
 
   const videoData = initialDataLoadCall.videoData;
   const genreData = initialDataLoadCall.genreData;
-  console.log(videoData);
-  console.log(genreData);
 
   function getChild() {
     switch (initialDataLoadCall.state) {
@@ -70,8 +69,8 @@ function App() {
           <>
             <Header />
             <VideoList
-              videoList={videoData}
-              genreList={genreData}
+              videoData={videoData}
+              genreData={genreData}
               handleReload={handleReload}
             />
           </>

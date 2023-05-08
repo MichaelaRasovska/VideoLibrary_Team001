@@ -14,16 +14,14 @@ function VideoTableList(props) {
         </tr>
       </thead>
       <tbody>
-        {props.videoList.map((video) => {
+        {props.videoData.map((video) => {
           return (
             <tr key={video.id}>
               <td>{video.id}</td>
               <td>{video.name}</td>
               <td>{video.title}</td>
               <td>{video.duration}</td>
-              <td>
-                {video.genres.map((genre) => genre.name).join(", ")}
-              </td>
+              <td>{video.genres.map((genre) => genre.name).join(', ')}</td>
             </tr>
           );
         })}
