@@ -13,16 +13,17 @@
         "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
     },
     {
-        "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e",
         "name": "Eminem",
         "title": "Superman",
-        "duration": 120,
+        "duration": 122,
         "description": "The best song from Eminem ever.",
         "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
             "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
         ],
         "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-        "picture": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4"
+        "picture": "https://rare-gallery.com/thumbs/526911-eminem.jpg",
+        "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e"
     },
     {
         "id": "1fb0182b-b876-4ffc-8d14-59d2244cb895",
@@ -105,5 +106,18 @@
         "url": "https://www.youtube.com/watch?v=9Ke4480MicU",
         "picture": "https://media.glamour.com/photos/5a38357aec9b1c5996a291b4/4:3/w_3748,h_2811,c_limit/julia-michaels.jpg",
         "id": "87c08b10-50bb-4848-ac54-2e2998c48cdf"
+    },
+    {
+        "name": "Lady Gaga",
+        "title": "Million Reasons",
+        "duration": 556,
+        "description": "Lady Gaga has million reasons for sure.",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "22b545bb-9ecc-4d85-b953-f6d0bc43c6e2"
+        ],
+        "url": "https://www.youtube.com/watch?v=en2D_5TzXCA&list=RDen2D_5TzXCA&start_radio=1",
+        "picture": "https://hips.hearstapps.com/hmg-prod/images/million-reasons-video-1481829812.jpg",
+        "id": "e95e498a-ad10-4529-b43a-2daec8a3ed8d"
     }
 ]
