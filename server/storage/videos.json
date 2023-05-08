@@ -49,5 +49,22 @@
         ],
         "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
         "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg"
+    },
+    {
+        "name": "Rytmus",
+        "title": "Zlatokopka",
+        "duration": 5,
+        "description": "Vyjebana zlatokopka",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992",
+            "b12dcfdf-eea2-421d-b421-d54ff3d7c81b",
+            "22b545bb-9ecc-4d85-b953-f6d0bc43c6e2",
+            "2aa337ae-4330-4be9-b0f4-4325b3e1a18a",
+            "cd96cdd8-5ddd-4499-add0-1ae7a9e8a950"
+        ],
+        "url": "https://www.youtube.com/watch?v=vUXzn-xTeA0&pp=ygURcnl0bXVzIHpsYXRva29wYWs%3D",
+        "picture": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png",
+        "id": "3e402de9-8285-44be-8392-292864e03461"
     }
 ]

@@ -32,9 +32,7 @@ const VideoDetailsList = (props) => {
             <div>
               <span className="text-muted">Žánry: </span>
               <b>
-                {props.video.genres.map((genre) => {
-                  return genre + ', ';
-                })}
+                {props.video.genres.map((genre) => genre.name).join(", ")}
               </b>
             </div>
             <div>
@@ -43,7 +41,7 @@ const VideoDetailsList = (props) => {
             </div>
             <div>
               <span className="text-muted">URL videa: </span>
-              <b>{props.video.url}</b>
+              <a href={props.video.url}>{props.video.url}</a>
             </div>
           </div>
         </Modal.Body>
