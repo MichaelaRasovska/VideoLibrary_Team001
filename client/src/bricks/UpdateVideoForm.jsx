@@ -232,15 +232,9 @@ const UpdateVideoForm = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div
-        style={{ color: 'grey', cursor: 'pointer' }}
-        size={1}
-        ariant="primary"
-        type="submit"
-        onClick={handleShowModal}
-      >
+      <Button variant="outline-secondary" onClick={handleShowModal}>
         Upravit video
-      </div>
+      </Button>
     </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import UpdateVideoForm from './UpdateVideoForm';
+import DeleteModal from './DeleteModal';
 
 const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
@@ -43,7 +44,11 @@ const VideoDetailsList = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-secondary">Smazat</Button>
+          <DeleteModal
+            key={props.video.id}
+            video={props.video}
+            handleReload={props.handleReload}
+          />
           <UpdateVideoForm
             key={props.video.id}
             video={props.video}

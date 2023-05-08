@@ -13,19 +13,6 @@
         "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
     },
     {
-        "name": "Eminem",
-        "title": "Superman",
-        "duration": 122,
-        "description": "The best song from Eminem ever.",
-        "genres": [
-            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
-            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
-        ],
-        "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-        "picture": "https://rare-gallery.com/thumbs/526911-eminem.jpg",
-        "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e"
-    },
-    {
         "id": "1fb0182b-b876-4ffc-8d14-59d2244cb895",
         "name": "Shakira",
         "title": "Waka Waka",
@@ -40,16 +27,17 @@
         "picture": "https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg"
     },
     {
-        "id": "abc811be-f251-45f4-8986-17522185c74e",
         "name": "Michael Jackson",
         "title": "Billie Jean",
         "duration": 250,
         "description": "Michael is the best!",
         "genres": [
-            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064"
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
         ],
         "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-        "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg"
+        "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg",
+        "id": "abc811be-f251-45f4-8986-17522185c74e"
     },
     {
         "name": "Rytmus",
