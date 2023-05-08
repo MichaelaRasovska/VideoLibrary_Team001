@@ -12,6 +12,7 @@ const DeleteModal = (props) => {
       method: 'DELETE',
     });
     props.handleReload();
+    handleCloseModal();
   };
 
   return (
