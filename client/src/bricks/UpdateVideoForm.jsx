@@ -3,8 +3,6 @@ import '../App.css';
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Icon from '@mdi/react';
-import { mdiPlus } from '@mdi/js';
 import {
   nameValidation,
   titleValidation,
@@ -28,7 +26,7 @@ const defaultData = {
   picture: '',
 };
 
-const AddVideoForm = (props) => {
+const UpdateVideoForm = (props) => {
   //modal states
   const [isModalShown, setShow] = useState(false);
 
@@ -75,7 +73,7 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      fetch('http://localhost:3000/videos', {
+      fetch('http://localhost:8000/videos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,6 +105,11 @@ const AddVideoForm = (props) => {
     });
   };
 
+  const handleClick = () => {
+    handleShowModal();
+    props.closeDetailModal();
+  };
+
   return (
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
@@ -118,6 +121,7 @@ const AddVideoForm = (props) => {
             <Input
               title="Interpret:"
               type="text"
+              value={props.video.name}
               validationMessage={nameValidation(formData.name)}
               errorMessage={errorMessage.name}
               onChange={(e) => {
@@ -128,6 +132,7 @@ const AddVideoForm = (props) => {
             <Input
               title="Název videa:"
               type="text"
+              value={props.video.title}
               validationMessage={titleValidation(formData.title)}
               errorMessage={errorMessage.title}
               onChange={(e) => {
@@ -138,6 +143,7 @@ const AddVideoForm = (props) => {
             <Input
               title="Délka videa:"
               type="number"
+              value={props.video.duration}
               validationMessage={durationValidation(formData.duration)}
               errorMessage={errorMessage.duration}
               onChange={(e) => {
@@ -150,7 +156,15 @@ const AddVideoForm = (props) => {
             />
             {'  '} sekund
             <label>
-              Vyber odpovídající žánry:
+              Vybrané žánry:{` `}
+              {props.video.genres
+                .map((genre) => {
+                  return genre.name;
+                })
+                .join(', ')}
+            </label>
+            <label>
+              Vyber nové žánry:
               <MultiSelect
                 options={props.genreData.map((x) => {
                   return {
@@ -165,6 +179,7 @@ const AddVideoForm = (props) => {
             </label>
             <Textarea
               title="Popis videa:"
+              value={props.video.description}
               validationMessage={descriptionValidation(formData.description)}
               errorMessage={errorMessage.description}
               onChange={(e) => {
@@ -175,6 +190,7 @@ const AddVideoForm = (props) => {
             <Input
               title="Link na video:"
               type="text"
+              value={props.video.url}
               validationMessage={linkValidation(formData.url)}
               errorMessage={errorMessage.url}
               onChange={(e) => {
@@ -184,6 +200,7 @@ const AddVideoForm = (props) => {
             />
             <Input
               title="Link na obrázek:"
+              value={props.video.picture}
               validationMessage={pictureValidation(formData.picture)}
               errorMessage={errorMessage.picture}
               onChange={(e) => {
@@ -201,21 +218,21 @@ const AddVideoForm = (props) => {
               handleSubmit();
             }}
           >
-            Vložit
+            Uložit
           </Button>
         </Modal.Footer>
       </Modal>
-      <Button
-        style={{ marginLeft: '8px' }}
+      <div
+        style={{ color: 'grey', cursor: 'pointer' }}
+        size={1}
         ariant="primary"
-        size="lg"
         type="submit"
-        onClick={handleShowModal}
+        onClick={handleClick}
       >
-        <Icon size={1} path={mdiPlus} color="white" /> Nové video
-      </Button>
+        Upravit video
+      </div>
     </>
   );
 };
 
-export default AddVideoForm;
+export default UpdateVideoForm;

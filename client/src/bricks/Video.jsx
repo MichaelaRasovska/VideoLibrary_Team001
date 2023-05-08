@@ -16,11 +16,15 @@ const Video = (props) => {
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item>
-            Žánr:{' '}
-            {props.video.genres.map((genre) => genre.name).join(", ")}
+            Žánr: {props.video.genres.map((genre) => genre.name).join(', ')}
           </ListGroup.Item>
           <ListGroup.Item>
-            <VideoDetailsList key={props.video.id} video={props.video} />
+            <VideoDetailsList
+              key={props.video.id}
+              video={props.video}
+              genreData={props.genreData}
+              handleReload={props.handleReload}
+            />
           </ListGroup.Item>
         </ListGroup>
       </Card>

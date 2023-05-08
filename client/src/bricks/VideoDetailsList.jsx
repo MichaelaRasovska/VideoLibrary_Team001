@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import UpdateVideoForm from './UpdateVideoForm';
 
 const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
-
   const handleShowModal = () => setShow(true);
   const handleCloseModal = () => setShow(false);
+
+  //close detail modal when update modal is open
+  /*
+  const [updateModalShown, setUpdateModalShown] = useState(false);
+
+  const closeDetailModal = () => {
+    setUpdateModalShown(true);
+  };
+
+  useEffect(() => {
+    handleCloseModal();
+  }, [updateModalShown]);
+  */
 
   return (
     <>
@@ -31,9 +43,7 @@ const VideoDetailsList = (props) => {
             </div>
             <div>
               <span className="text-muted">Žánry: </span>
-              <b>
-                {props.video.genres.map((genre) => genre.name).join(", ")}
-              </b>
+              <b>{props.video.genres.map((genre) => genre.name).join(', ')}</b>
             </div>
             <div>
               <span className="text-muted">Popis videa: </span>
@@ -47,7 +57,13 @@ const VideoDetailsList = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary">Smazat</Button>
-          <Button variant="outline-primary">Upravit</Button>
+          <UpdateVideoForm
+            key={props.video.id}
+            video={props.video}
+            genreData={props.genreData}
+            handleReload={props.handleReload}
+            /*closeDetailModal={closeDetailModal}*/
+          />
         </Modal.Footer>
       </Modal>
       <div

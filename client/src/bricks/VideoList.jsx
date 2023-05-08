@@ -79,7 +79,11 @@ const VideoList = (props) => {
       </Navbar>
       <div className="grid">
         {isGrid ? (
-          <VideoGridList videoData={filteredVideoData} />
+          <VideoGridList
+            videoData={filteredVideoData}
+            genreData={props.genreData}
+            handleReload={props.handleReload}
+          />
         ) : (
           <VideoTableList videoData={filteredVideoData} />
         )}
