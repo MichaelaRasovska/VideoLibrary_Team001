@@ -105,10 +105,10 @@ const UpdateVideoForm = (props) => {
     });
   };
 
-  const handleClick = () => {
+  /*const handleClick = () => {
     handleShowModal();
     props.closeDetailModal();
-  };
+  };*/
 
   return (
     <>
@@ -227,7 +227,7 @@ const UpdateVideoForm = (props) => {
         size={1}
         ariant="primary"
         type="submit"
-        onClick={handleClick}
+        onClick={handleShowModal}
       >
         Upravit video
       </div>
