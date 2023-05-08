@@ -75,7 +75,6 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      console.log(formData);
       fetch('http://localhost:3000/videos', {
         method: 'POST',
         headers: {
@@ -91,6 +90,7 @@ const AddVideoForm = (props) => {
           picture: formData.picture,
         }),
       });
+      props.handleReload();
       setFormData(defaultData);
       handleCloseModal();
     }
@@ -153,18 +153,17 @@ const AddVideoForm = (props) => {
                   setErrorMessage({ ...errorMessage, duration: '' });
                 }}
               />
-              minut
+              {'  '} sekund
             </label>
             <label>
               Vyber odpovídající žánry:
               <div>
-                <pre>{JSON.stringify(selected)}</pre>
                 <MultiSelect
-                  options={props.genreList.map(x => {
+                  options={props.genreList.map((x) => {
                     return {
                       value: x.id,
-                      label: x.name
-                    }
+                      label: x.name,
+                    };
                   })}
                   value={selected}
                   onChange={handleGenreChange}

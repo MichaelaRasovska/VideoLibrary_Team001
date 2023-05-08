@@ -26,7 +26,7 @@ export const durationValidation = (duration) => {
     return 'Délka videa musí být vyplněna';
   }
   if (duration.length < 1) {
-    return `Délka videa musí být minimálně 1 min`;
+    return `Délka videa musí být minimálně 1 sekunda.`;
   }
   return 'Vložte prosím trvání videa.';
 };

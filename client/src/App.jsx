@@ -7,13 +7,20 @@ import Icon from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
 
 function App() {
+  const [databaseChanged, setDatabaseChanged] = useState(false);
+
+  const handleReload = () => {
+    setDatabaseChanged(true);
+  };
+
   //server call for data (videos and genres)
   const [initialDataLoadCall, setInitialDataLoadCall] = useState({
     state: 'pending',
   });
-  const videoDataUrl = "http://localhost:3000/videos"
-  const genreDataUrl = "http://localhost:3000/genres"
-  async function fetchData(dataUrl){
+  const videoDataUrl = 'http://localhost:3000/videos';
+  const genreDataUrl = 'http://localhost:3000/genres';
+
+  async function fetchData(dataUrl) {
     const videoResponse = await fetch(dataUrl, {
       method: 'GET',
     });
@@ -27,23 +34,23 @@ function App() {
   }
 
   useEffect(() => {
-    async function fetchInitialData(){
+    async function fetchInitialData() {
       const videoData = await fetchData(videoDataUrl);
       const genreData = await fetchData(genreDataUrl);
 
-      if(!videoData || !genreData){
+      if (!videoData || !genreData) {
         return;
       }
 
       setInitialDataLoadCall({
         state: 'success',
         videoData: videoData,
-        genreData: genreData
+        genreData: genreData,
       });
     }
 
-    fetchInitialData()
-  }, []);
+    fetchInitialData();
+  }, [databaseChanged]);
 
   const videoData = initialDataLoadCall.videoData;
   const genreData = initialDataLoadCall.genreData;
@@ -62,13 +69,17 @@ function App() {
         return (
           <>
             <Header />
-            <VideoList videoList={videoData} genreList = {genreData}/>
+            <VideoList
+              videoList={videoData}
+              genreList={genreData}
+              handleReload={handleReload}
+            />
           </>
         );
       case 'error':
         return (
           <div className={styles.error}>
-            <div>Nepodařilo se načíst data o třídě.</div>
+            <div>Nepodařilo se načíst data.</div>
             <br />
             <pre>{JSON.stringify(initialDataLoadCall.error, null, 2)}</pre>
           </div>

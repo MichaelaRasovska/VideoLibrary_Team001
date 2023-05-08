@@ -69,7 +69,11 @@ const VideoList = (props) => {
                 <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
                 {isGrid ? 'Tabulka' : 'Grid'}
               </Button>
-              <AddVideoForm videoList={props.videoList} genreList = {props.genreList} />
+              <AddVideoForm
+                videoList={props.videoList}
+                genreList={props.genreList}
+                handleReload={props.handleReload}
+              />
             </Form>
           </div>
         </div>

@@ -66,5 +66,44 @@
         "url": "https://www.youtube.com/watch?v=vUXzn-xTeA0&pp=ygURcnl0bXVzIHpsYXRva29wYWs%3D",
         "picture": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png",
         "id": "3e402de9-8285-44be-8392-292864e03461"
+    },
+    {
+        "name": "Sia",
+        "title": "Chandelier",
+        "duration": 230,
+        "description": "another entry in database",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+        ],
+        "url": "https://www.youtube.com/watch?v=2vjPBrBU-TM",
+        "picture": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/SiaFurler_Live2016_%28cropped%29.jpg/640px-SiaFurler_Live2016_%28cropped%29.jpg",
+        "id": "a6d7fc25-baeb-423a-bda3-5c591db52b66"
+    },
+    {
+        "name": "Jay Z.",
+        "title": "99 problems",
+        "duration": 230,
+        "description": "Jay Z. and his problems",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+        ],
+        "url": "https://www.youtube.com/watch?v=6uikJTnmtgw",
+        "picture": "https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg/220px-Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg",
+        "id": "752f3371-c10a-4c32-888b-e602d275436e"
+    },
+    {
+        "name": "Julia Michaels",
+        "title": "Issues",
+        "duration": 230,
+        "description": "Julia Michaels has issues",
+        "genres": [
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992",
+            "b12dcfdf-eea2-421d-b421-d54ff3d7c81b"
+        ],
+        "url": "https://www.youtube.com/watch?v=9Ke4480MicU",
+        "picture": "https://media.glamour.com/photos/5a38357aec9b1c5996a291b4/4:3/w_3748,h_2811,c_limit/julia-michaels.jpg",
+        "id": "87c08b10-50bb-4848-ac54-2e2998c48cdf"
     }
 ]
