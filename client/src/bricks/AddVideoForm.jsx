@@ -1,10 +1,10 @@
-import React from 'react';
-import '../App.css';
-import { Modal } from 'react-bootstrap';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Icon from '@mdi/react';
-import { mdiPlus } from '@mdi/js';
+import React from "react";
+import "../App.css";
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Icon from "@mdi/react";
+import { mdiPlus } from "@mdi/js";
 import {
   nameValidation,
   titleValidation,
@@ -12,29 +12,29 @@ import {
   durationValidation,
   linkValidation,
   pictureValidation,
-} from './validations';
-import { Input } from './Input';
-import { Textarea } from './Textarea';
-import { MultiSelect } from 'react-multi-select-component';
+} from "./validations";
+import { Input } from "./Input";
+import { Textarea } from "./Textarea";
+import { MultiSelect } from "react-multi-select-component";
 
 //data
 const defaultData = {
-  name: '',
-  title: '',
+  name: "",
+  title: "",
   duration: 0,
-  description: '',
+  description: "",
   genres: [],
-  url: '',
-  picture: '',
+  url: "",
+  picture: "",
 };
 
 //Multiselect
 
 const genres = [
-  { label: 'Pop', value: 'pop', name: 'Pop' },
-  { label: 'Rock', value: 'rock', name: 'Rock' },
-  { label: 'Hip hop', value: 'hip-hop', name: 'Hip hop' },
-  { label: 'Dance music', value: 'dance-music', name: 'Dance music' },
+  { label: "Pop", value: "pop", name: "Pop" },
+  { label: "Rock", value: "rock", name: "Rock" },
+  { label: "Hip hop", value: "hip-hop", name: "Hip hop" },
+  { label: "Dance music", value: "dance-music", name: "Dance music" },
 ];
 
 const AddVideoForm = (props) => {
@@ -85,10 +85,10 @@ const AddVideoForm = (props) => {
   const handleSubmit = async () => {
     if (validateForm() === true) {
       console.log(formData);
-      fetch('http://localhost:3000/videos', {
-        method: 'POST',
+      fetch("http://localhost:3000/videos", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -124,45 +124,57 @@ const AddVideoForm = (props) => {
         </Modal.Header>
         <Modal.Body>
           <form className="addVideoForm">
-            <label>
+            <label for="formGroupExampleInput">
               Interpret:
-              <Input
+              <input
                 type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
                 validationMessage={nameValidation(formData.name)}
                 errorMessage={errorMessage.name}
                 onChange={(e) => {
                   setFormData({ ...formData, name: e.target.value });
-                  setErrorMessage({ ...errorMessage, name: '' });
+                  setErrorMessage({ ...errorMessage, name: "" });
                 }}
               />
             </label>
-            <label>
+
+            <label for="formGroupExampleInput">
               Název videa:
-              <Input
+              <input
                 type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
                 validationMessage={titleValidation(formData.title)}
                 errorMessage={errorMessage.title}
                 onChange={(e) => {
                   setFormData({ ...formData, title: e.target.value });
-                  setErrorMessage({ ...errorMessage, title: '' });
+                  setErrorMessage({ ...errorMessage, title: "" });
                 }}
               />
             </label>
-            <label>
-              Délka videa:
-              <Input
-                type="number"
-                validationMessage={durationValidation(formData.duration)}
-                errorMessage={errorMessage.duration}
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    duration: Number(e.target.value),
-                  });
-                  setErrorMessage({ ...errorMessage, duration: '' });
-                }}
-              />
-              minut
+
+            <label for="formGroupExampleInput">
+              Délka videa: (min)
+              <div class="input-with-addon">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="formGroupExampleInput"
+                  placeholder="Zadejte délku videa v minutách"
+                  validationMessage={durationValidation(formData.duration)}
+                  errorMessage={errorMessage.duration}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      duration: Number(e.target.value),
+                    });
+                    setErrorMessage({ ...errorMessage, duration: "" });
+                  }}
+                />
+              </div>
             </label>
             <label>
               Vyber odpovídající žánry:
@@ -176,29 +188,37 @@ const AddVideoForm = (props) => {
                 />
               </div>
             </label>
-            <label>
+
+            <label for="exampleFormControlTextarea1">
               Popis:
               <Textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
                 validationMessage={descriptionValidation(formData.description)}
                 errorMessage={errorMessage.description}
                 onChange={(e) => {
                   setFormData({ ...formData, description: e.target.value });
-                  setErrorMessage({ ...errorMessage, description: '' });
+                  setErrorMessage({ ...errorMessage, description: "" });
                 }}
               />
             </label>
             <label>
               Link na video:
-              <Input
+              <input
                 type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
                 validationMessage={linkValidation(formData.url)}
                 errorMessage={errorMessage.url}
                 onChange={(e) => {
                   setFormData({ ...formData, url: e.target.value });
-                  setErrorMessage({ ...errorMessage, url: '' });
+                  setErrorMessage({ ...errorMessage, url: "" });
                 }}
               />
             </label>
+
             <label>
               Link na obrázek:
               <Input
@@ -206,7 +226,7 @@ const AddVideoForm = (props) => {
                 errorMessage={errorMessage.picture}
                 onChange={(e) => {
                   setFormData({ ...formData, picture: e.target.value });
-                  setErrorMessage({ ...errorMessage, picture: '' });
+                  setErrorMessage({ ...errorMessage, picture: "" });
                 }}
               />
             </label>
@@ -226,8 +246,11 @@ const AddVideoForm = (props) => {
         </Modal.Footer>
       </Modal>
       <Button
-        style={{ marginLeft: '8px' }}
-        ariant="primary"
+        style={{
+          marginLeft: "8px",
+          color: "white",
+        }}
+        variant="primary"
         size="lg"
         type="submit"
         onClick={handleShowModal}

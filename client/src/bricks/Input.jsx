@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export const Input = ({
   title,
@@ -15,9 +15,9 @@ export const Input = ({
     onChange(e);
   };
 
-  let message = '';
+  let message = "";
 
-  if (errorMessage !== '') {
+  if (errorMessage !== "") {
     message = errorMessage;
   } else if (fieldChanged === true) {
     message = validationMessage;
@@ -26,8 +26,11 @@ export const Input = ({
   return (
     <label className="form-label">
       {title}
+
       <input
-        className="form-input"
+        className="form-control"
+        id="formGroupExampleInput"
+        placeholder=""
         type={type}
         value={value}
         onChange={onInputChange}
