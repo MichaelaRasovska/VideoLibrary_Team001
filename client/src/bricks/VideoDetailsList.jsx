@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import UpdateVideoForm from './UpdateVideoForm';
 import DeleteModal from './DeleteModal';
 
@@ -45,15 +44,11 @@ const VideoDetailsList = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <DeleteModal
-            key={props.video.id}
             video={props.video}
-            handleReload={props.handleReload}
           />
           <UpdateVideoForm
-            key={props.video.id}
             video={props.video}
             genreData={props.genreData}
-            handleReload={props.handleReload}
           />
         </Modal.Footer>
       </Modal>

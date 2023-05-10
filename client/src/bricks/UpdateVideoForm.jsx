@@ -15,19 +15,9 @@ import { Input } from './Input';
 import { Textarea } from './Textarea';
 import { MultiSelect } from 'react-multi-select-component';
 
-//data
-const defaultData = {
-  name: '',
-  title: '',
-  duration: 0,
-  description: '',
-  genres: [],
-  url: '',
-  picture: '',
-};
-
 const UpdateVideoForm = (props) => {
-  const originalData = {
+  //data
+  const defaultData = {
     name: props.video.name,
     title: props.video.title,
     duration: props.video.duration,
@@ -36,6 +26,7 @@ const UpdateVideoForm = (props) => {
     url: props.video.url,
     picture: props.video.picture,
   };
+
   //modal states
   const [isModalShown, setShow] = useState(false);
 
@@ -47,7 +38,6 @@ const UpdateVideoForm = (props) => {
   const [errorMessage, setErrorMessage] = useState(defaultData);
 
   //Validations
-
   const validateForm = () => {
     let isValid = true;
     if (nameValidation(formData.name) !== null) {
@@ -88,22 +78,20 @@ const UpdateVideoForm = (props) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name === '' ? originalData.name : formData.name,
-          title: formData.title === '' ? originalData.title : formData.title,
+          name: formData.name === '' ? defaultData.name : formData.name,
+          title: formData.title === '' ? defaultData.title : formData.title,
           duration:
-            formData.duration === 0 ? originalData.duration : formData.duration,
+            formData.duration === 0 ? defaultData.duration : formData.duration,
           description:
             formData.description === ''
-              ? originalData.description
+              ? defaultData.description
               : formData.description,
-          genres:
-            formData.genres === [] ? originalData.genres : formData.genres,
-          url: formData.url === '' ? originalData.url : formData.url,
+          genres: formData.genres === [] ? defaultData.genres : formData.genres,
+          url: formData.url === '' ? defaultData.url : formData.url,
           picture:
-            formData.picture === 0 ? originalData.picture : formData.picture,
+            formData.picture === 0 ? defaultData.picture : formData.picture,
         }),
       });
-      props.handleReload();
       setFormData(defaultData);
       handleCloseModal();
     }

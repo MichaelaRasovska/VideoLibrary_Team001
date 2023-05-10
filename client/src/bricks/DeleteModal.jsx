@@ -11,7 +11,6 @@ const DeleteModal = (props) => {
     fetch(`http://localhost:8000/videos/${props.video.id}`, {
       method: 'DELETE',
     });
-    props.handleReload();
     handleCloseModal();
   };
 

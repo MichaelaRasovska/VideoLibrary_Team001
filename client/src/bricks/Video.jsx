@@ -20,10 +20,8 @@ const Video = (props) => {
           </ListGroup.Item>
           <ListGroup.Item>
             <VideoDetailsList
-              key={props.video.id}
               video={props.video}
               genreData={props.genreData}
-              handleReload={props.handleReload}
             />
           </ListGroup.Item>
         </ListGroup>
