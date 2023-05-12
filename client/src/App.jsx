@@ -11,7 +11,7 @@ function App() {
   const [databaseChanged, setDatabaseChanged] = useState(false);
 
   const handleReload = () => {
-    setDatabaseChanged(true);
+    setDatabaseChanged(!databaseChanged);
   };
 
   //server call for data (videos and genres)

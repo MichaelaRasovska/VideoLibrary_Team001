@@ -45,10 +45,12 @@ const VideoDetailsList = (props) => {
         <Modal.Footer>
           <DeleteModal
             video={props.video}
+            handleReload={props.handleReload}
           />
           <UpdateVideoForm
             video={props.video}
             genreData={props.genreData}
+            handleReload={props.handleReload}
           />
         </Modal.Footer>
       </Modal>

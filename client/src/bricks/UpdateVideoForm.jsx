@@ -8,8 +8,8 @@ import {
   titleValidation,
   descriptionValidation,
   durationValidation,
-  linkValidation,
-  pictureValidation,
+  videoLinkValidation,
+  pictureLinkValidation,
 } from './validations';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
@@ -22,7 +22,7 @@ const UpdateVideoForm = (props) => {
     title: props.video.title,
     duration: props.video.duration,
     description: props.video.description,
-    genres: props.video.genres,
+    genres: props.video.genres.map(x => x.id),
     url: props.video.url,
     picture: props.video.picture,
   };
@@ -52,10 +52,10 @@ const UpdateVideoForm = (props) => {
     if (descriptionValidation(formData.description) !== null) {
       isValid = false;
     }
-    if (linkValidation(formData.url) !== null) {
+    if (videoLinkValidation(formData.url) !== null) {
       isValid = false;
     }
-    if (pictureValidation(formData.picture) !== null) {
+    if (pictureLinkValidation(formData.picture) !== null) {
       isValid = false;
     }
 
@@ -64,15 +64,15 @@ const UpdateVideoForm = (props) => {
       title: titleValidation(formData.title),
       duration: durationValidation(formData.duration),
       description: descriptionValidation(formData.description),
-      url: linkValidation(formData.url),
-      picture: pictureValidation(formData.picture),
+      url: videoLinkValidation(formData.url),
+      picture: pictureLinkValidation(formData.picture),
     });
     return isValid;
   };
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      fetch(`http://localhost:8000/videos/${props.video.id}`, {
+      await fetch(`http://localhost:8000/videos/${props.video.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -93,6 +93,7 @@ const UpdateVideoForm = (props) => {
         }),
       });
       setFormData(defaultData);
+      props.handleReload();
       handleCloseModal();
     }
   };
@@ -189,7 +190,7 @@ const UpdateVideoForm = (props) => {
               title="Link na video:"
               type="text"
               defaultValue={props.video.url}
-              validationMessage={linkValidation(formData.url)}
+              validationMessage={videoLinkValidation(formData.url)}
               errorMessage={errorMessage.url}
               onChange={(e) => {
                 setFormData({ ...formData, url: e.target.value });
@@ -199,7 +200,7 @@ const UpdateVideoForm = (props) => {
             <Input
               title="Link na obrázek:"
               defaultValue={props.video.picture}
-              validationMessage={pictureValidation(formData.picture)}
+              validationMessage={pictureLinkValidation(formData.picture)}
               errorMessage={errorMessage.picture}
               onChange={(e) => {
                 setFormData({ ...formData, picture: e.target.value });

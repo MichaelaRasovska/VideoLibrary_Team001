@@ -8,9 +8,10 @@ const DeleteModal = (props) => {
   const handleCloseModal = () => setShow(false);
 
   const handleSubmit = async () => {
-    fetch(`http://localhost:8000/videos/${props.video.id}`, {
+    await fetch(`http://localhost:8000/videos/${props.video.id}`, {
       method: 'DELETE',
     });
+    props.handleReload();
     handleCloseModal();
   };
 

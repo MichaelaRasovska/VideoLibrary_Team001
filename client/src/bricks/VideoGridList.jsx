@@ -8,6 +8,7 @@ const VideoGridList = (props) => {
         key={video.id}
         video={video}
         genreData={props.genreData}
+        handleReload={props.handleReload}
         />
     );
   });
