@@ -21,7 +21,7 @@ import { MultiSelect } from 'react-multi-select-component';
 const defaultData = {
   name: '',
   title: '',
-  duration: 0,
+  duration: '',
   description: '',
   genres: [],
   url: '',
@@ -116,37 +116,46 @@ const AddVideoForm = (props) => {
         <Modal.Body>
           <form className="addVideoForm">
             <Input
-              title="Interpret:"
-              type="text"
-              validationMessage={nameValidation(formData.name)}
-              errorMessage={errorMessage.name}
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-                setErrorMessage({ ...errorMessage, name: '' });
-              }}
+                title="Interpret:"
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
+                validationMessage={nameValidation(formData.name)}
+                errorMessage={errorMessage.name}
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                  setErrorMessage({ ...errorMessage, name: '' });
+                }}
             />
             <Input
-              title="Název videa:"
-              type="text"
-              validationMessage={titleValidation(formData.title)}
-              errorMessage={errorMessage.title}
-              onChange={(e) => {
-                setFormData({ ...formData, title: e.target.value });
-                setErrorMessage({ ...errorMessage, title: '' });
-              }}
+                title="Název videa:"
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
+                validationMessage={titleValidation(formData.title)}
+                errorMessage={errorMessage.title}
+                onChange={(e) => {
+                  setFormData({ ...formData, title: e.target.value });
+                  setErrorMessage({ ...errorMessage, title: '' });
+                }}
             />
             <Input
-              title="Délka videa:"
-              type="number"
-              validationMessage={durationValidation(formData.duration)}
-              errorMessage={errorMessage.duration}
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  duration: Number(e.target.value),
-                });
-                setErrorMessage({ ...errorMessage, duration: '' });
-              }}
+                title="Délka videa:"
+                type="number"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder="Zadejte délku videa"
+                validationMessage={durationValidation(formData.duration)}
+                errorMessage={errorMessage.duration}
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    duration: Number(e.target.value),
+                  });
+                  setErrorMessage({ ...errorMessage, duration: '' });
+                }}
             />
             {'  '} sekund
             <label>
@@ -164,32 +173,38 @@ const AddVideoForm = (props) => {
               />
             </label>
             <Textarea
-              title="Popis videa:"
-              validationMessage={descriptionValidation(formData.description)}
-              errorMessage={errorMessage.description}
-              onChange={(e) => {
-                setFormData({ ...formData, description: e.target.value });
-                setErrorMessage({ ...errorMessage, description: '' });
-              }}
+                title="Popis videa:"
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                validationMessage={descriptionValidation(formData.description)}
+                errorMessage={errorMessage.description}
+                onChange={(e) => {
+                  setFormData({ ...formData, description: e.target.value });
+                  setErrorMessage({ ...errorMessage, description: '' });
+                }}
             />
             <Input
-              title="Link na video:"
-              type="text"
-              validationMessage={videoLinkValidation(formData.url)}
-              errorMessage={errorMessage.url}
-              onChange={(e) => {
-                setFormData({ ...formData, url: e.target.value });
-                setErrorMessage({ ...errorMessage, url: '' });
-              }}
+                title="Link na video:"
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                placeholder=""
+                validationMessage={videoLinkValidation(formData.url)}
+                errorMessage={errorMessage.url}
+                onChange={(e) => {
+                  setFormData({ ...formData, url: e.target.value });
+                  setErrorMessage({ ...errorMessage, url: '' });
+                }}
             />
             <Input
-              title="Link na obrázek:"
-              validationMessage={pictureLinkValidation(formData.picture)}
-              errorMessage={errorMessage.picture}
-              onChange={(e) => {
-                setFormData({ ...formData, picture: e.target.value });
-                setErrorMessage({ ...errorMessage, picture: '' });
-              }}
+                title="Link na obrázek:"
+                validationMessage={pictureLinkValidation(formData.picture)}
+                errorMessage={errorMessage.picture}
+                onChange={(e) => {
+                  setFormData({ ...formData, picture: e.target.value });
+                  setErrorMessage({ ...errorMessage, picture: '' });
+                }}
             />
           </form>
         </Modal.Body>
@@ -206,8 +221,11 @@ const AddVideoForm = (props) => {
         </Modal.Footer>
       </Modal>
       <Button
-        style={{ marginLeft: '8px' }}
-        ariant="primary"
+        style={{
+          marginLeft: "8px",
+          color: "white",
+        }}
+        variant="primary"
         size="lg"
         type="submit"
         onClick={handleShowModal}

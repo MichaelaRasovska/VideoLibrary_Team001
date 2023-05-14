@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export const Textarea = ({
   defaultValue,
@@ -16,25 +16,26 @@ export const Textarea = ({
     onChange(e);
   };
 
-  let message = '';
+  let message = "";
 
-  if (errorMessage !== '') {
+  if (errorMessage !== "") {
     message = errorMessage;
   } else if (fieldChanged === true) {
     message = validationMessage;
   }
 
   return (
-    <label className="form-label">
+    <label className="form-label" htmlFor="exampleFormControlTextarea1">
       {title}
       <textarea
-        className="form-textarea"
+        className="form-control"
+        id="exampleFormControlTextarea1"
         type={type}
         value={value}
         defaultValue={defaultValue}
         onChange={onInputChange}
-        rows="6"
-        cols="30"
+        // rows="6"
+        cols="90"
       ></textarea>
       <span className="form-error">{message}</span>
     </label>

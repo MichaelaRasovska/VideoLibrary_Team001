@@ -5,14 +5,16 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const Video = (props) => {
   return (
-    <div>
+    <div className="hover_card">
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={props.video.picture} />
-        <Card.Body>
+        <Card.Body className="card-body">
           <Card.Title>
             {props.video.title} from {props.video.name}
           </Card.Title>
-          <Card.Text>{props.video.description}</Card.Text>
+          <Card.Text className="list-group-flush">
+            {props.video.description}
+          </Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item>
@@ -20,9 +22,10 @@ const Video = (props) => {
           </ListGroup.Item>
           <ListGroup.Item>
             <VideoDetailsList
-              handleReload={props.handleReload}
-              video={props.video}
-              genreData={props.genreData}
+                key={props.video.id}
+                handleReload={props.handleReload}
+                video={props.video}
+                genreData={props.genreData}
             />
           </ListGroup.Item>
         </ListGroup>
