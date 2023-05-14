@@ -13,18 +13,6 @@
         "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
     },
     {
-        "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e",
-        "name": "Eminem",
-        "title": "Superman",
-        "duration": 120,
-        "description": "The best song from Eminem ever.",
-        "genres": [
-            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
-        ],
-        "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-        "picture": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4"
-    },
-    {
         "id": "1fb0182b-b876-4ffc-8d14-59d2244cb895",
         "name": "Shakira",
         "title": "Waka Waka",
@@ -39,15 +27,85 @@
         "picture": "https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg"
     },
     {
-        "id": "abc811be-f251-45f4-8986-17522185c74e",
         "name": "Michael Jackson",
         "title": "Billie Jean",
         "duration": 250,
         "description": "Michael is the best!",
         "genres": [
-            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064"
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
         ],
         "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-        "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg"
+        "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg",
+        "id": "abc811be-f251-45f4-8986-17522185c74e"
+    },
+    {
+        "name": "Rytmus",
+        "title": "Zlatokopka",
+        "duration": 5,
+        "description": "Vyjebana zlatokopka",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992",
+            "b12dcfdf-eea2-421d-b421-d54ff3d7c81b",
+            "22b545bb-9ecc-4d85-b953-f6d0bc43c6e2",
+            "2aa337ae-4330-4be9-b0f4-4325b3e1a18a",
+            "cd96cdd8-5ddd-4499-add0-1ae7a9e8a950"
+        ],
+        "url": "https://www.youtube.com/watch?v=vUXzn-xTeA0&pp=ygURcnl0bXVzIHpsYXRva29wYWs%3D",
+        "picture": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png",
+        "id": "3e402de9-8285-44be-8392-292864e03461"
+    },
+    {
+        "name": "Sia",
+        "title": "Chandelier",
+        "duration": 230,
+        "description": "another entry in database",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+        ],
+        "url": "https://www.youtube.com/watch?v=2vjPBrBU-TM",
+        "picture": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/SiaFurler_Live2016_%28cropped%29.jpg/640px-SiaFurler_Live2016_%28cropped%29.jpg",
+        "id": "a6d7fc25-baeb-423a-bda3-5c591db52b66"
+    },
+    {
+        "name": "Jay Z.",
+        "title": "99 problems",
+        "duration": 230,
+        "description": "Jay Z. and his problems",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+        ],
+        "url": "https://www.youtube.com/watch?v=6uikJTnmtgw",
+        "picture": "https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg/220px-Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg",
+        "id": "752f3371-c10a-4c32-888b-e602d275436e"
+    },
+    {
+        "name": "Julia Michaels",
+        "title": "Issues",
+        "duration": 230,
+        "description": "Julia Michaels has issues",
+        "genres": [
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992",
+            "b12dcfdf-eea2-421d-b421-d54ff3d7c81b"
+        ],
+        "url": "https://www.youtube.com/watch?v=9Ke4480MicU",
+        "picture": "https://media.glamour.com/photos/5a38357aec9b1c5996a291b4/4:3/w_3748,h_2811,c_limit/julia-michaels.jpg",
+        "id": "87c08b10-50bb-4848-ac54-2e2998c48cdf"
+    },
+    {
+        "name": "Lady Gaga",
+        "title": "Million Reasons",
+        "duration": 556,
+        "description": "Lady Gaga has million reasons for sure.",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "22b545bb-9ecc-4d85-b953-f6d0bc43c6e2"
+        ],
+        "url": "https://www.youtube.com/watch?v=en2D_5TzXCA&list=RDen2D_5TzXCA&start_radio=1",
+        "picture": "https://hips.hearstapps.com/hmg-prod/images/million-reasons-video-1481829812.jpg",
+        "id": "e95e498a-ad10-4529-b43a-2daec8a3ed8d"
     }
 ]

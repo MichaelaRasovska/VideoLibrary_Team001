@@ -26,7 +26,7 @@ export const durationValidation = (duration) => {
     return 'Délka videa musí být vyplněna';
   }
   if (duration.length < 1) {
-    return `Délka videa musí být minimálně 1 min`;
+    return `Délka videa musí být minimálně 1 sekunda.`;
   }
   return 'Vložte prosím trvání videa.';
 };
@@ -41,24 +41,22 @@ export const descriptionValidation = (value) => {
   return null;
 };
 
-export const linkValidation = (link) => {
+export const videoLinkValidation = (link) => {
+  return linkValidation(link, "video");
+};
+
+export const pictureLinkValidation = (link) => {
+  return linkValidation(link, "obrázek");
+};
+
+const linkValidation = (link, fieldName) => {
   if (/^(https|http)?:\/\/.*\.(com|cz)\/[a-zA-Z0-9]+/.test(link)) {
     return null;
   }
   if (link.trim() === '') {
-    return `Odkaz na video je povinný`;
+    return `Odkaz na ${fieldName} je povinný`;
   }
-  return 'Vložte prosím URL odkazující přímo na video. URL musí obsahovat "http:// nebo https://".';
-};
-
-export const pictureValidation = (picture) => {
-  if (/^(https|http)?:\/\/.*\.(png|jpg)$/.test(picture)) {
-    return null;
-  }
-  if (picture.trim() === '') {
-    return `URL obrázku je povinné`;
-  }
-  return 'Vložte prosím URL odkazující přímo na .jpg nebo .png soubor';
+  return `Vložte prosím URL odkazující přímo na ${fieldName}. URL musí obsahovat "http:// nebo https://".`;
 };
 
 export const requiredValidation = (value) => {

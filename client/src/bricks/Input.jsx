@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export const Input = ({
+  defaultValue,
   title,
   type,
   value,
@@ -33,6 +34,7 @@ export const Input = ({
         placeholder=""
         type={type}
         value={value}
+        defaultValue={defaultValue}
         onChange={onInputChange}
       />
       <span className="form-error">{message}</span>

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import UpdateVideoForm from './UpdateVideoForm';
+import DeleteModal from './DeleteModal';
 
 const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
-
   const handleShowModal = () => setShow(true);
   const handleCloseModal = () => setShow(false);
 
@@ -31,11 +30,7 @@ const VideoDetailsList = (props) => {
             </div>
             <div>
               <span className="text-muted">Žánry: </span>
-              <b>
-                {props.video.genres.map((genre) => {
-                  return genre + ', ';
-                })}
-              </b>
+              <b>{props.video.genres.map((genre) => genre.name).join(', ')}</b>
             </div>
             <div>
               <span className="text-muted">Popis videa: </span>
@@ -43,13 +38,20 @@ const VideoDetailsList = (props) => {
             </div>
             <div>
               <span className="text-muted">URL videa: </span>
-              <b>{props.video.url}</b>
+              <a href={props.video.url}>{props.video.url}</a>
             </div>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-secondary">Smazat</Button>
-          <Button variant="outline-primary">Upravit</Button>
+          <DeleteModal
+            video={props.video}
+            handleReload={props.handleReload}
+          />
+          <UpdateVideoForm
+            video={props.video}
+            genreData={props.genreData}
+            handleReload={props.handleReload}
+          />
         </Modal.Footer>
       </Modal>
       <div

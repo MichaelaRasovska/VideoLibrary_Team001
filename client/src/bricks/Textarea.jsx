@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export const Textarea = ({
+  defaultValue,
   title,
   type,
   value,
@@ -31,6 +32,7 @@ export const Textarea = ({
         id="exampleFormControlTextarea1"
         type={type}
         value={value}
+        defaultValue={defaultValue}
         onChange={onInputChange}
         // rows="6"
         cols="90"

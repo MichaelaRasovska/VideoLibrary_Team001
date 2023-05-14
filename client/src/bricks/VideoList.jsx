@@ -17,14 +17,14 @@ const VideoList = (props) => {
   const isGrid = viewType === 'grid';
   const [searchBy, setSearchBy] = useState('');
 
-  const filteredVideoList = useMemo(() => {
-    return props.videoList.filter((item) => {
+  const filteredVideoData = useMemo(() => {
+    return props.videoData.filter((item) => {
       return (
         item.name.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase()) ||
         item.title.toLocaleLowerCase().includes(searchBy.toLocaleLowerCase())
       );
     });
-  }, [searchBy, props.videoList]);
+  }, [searchBy, props.videoData]);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -69,16 +69,23 @@ const VideoList = (props) => {
                 <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
                 {isGrid ? 'Tabulka' : 'Grid'}
               </Button>
-              <AddVideoForm videoList={props.videoList} />
+              <AddVideoForm
+                genreData={props.genreData}
+                handleReload={props.handleReload}
+              />
             </Form>
           </div>
         </div>
       </Navbar>
       <div className="grid">
         {isGrid ? (
-          <VideoGridList videoList={filteredVideoList} />
+          <VideoGridList
+            videoData={filteredVideoData}
+            genreData={props.genreData}
+            handleReload={props.handleReload}
+            />
         ) : (
-          <VideoTableList videoList={filteredVideoList} />
+          <VideoTableList videoData={filteredVideoData} />
         )}
       </div>
     </div>
