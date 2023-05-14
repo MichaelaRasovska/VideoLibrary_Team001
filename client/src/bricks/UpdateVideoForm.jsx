@@ -27,6 +27,16 @@ const UpdateVideoForm = (props) => {
     picture: props.video.picture,
   };
 
+  const emptyData = {
+    name: '',
+    title: '',
+    duration: '',
+    description: '',
+    genres: [],
+    url: '',
+    picture: '',
+  };
+
   //modal states
   const [isModalShown, setShow] = useState(false);
 
@@ -35,7 +45,7 @@ const UpdateVideoForm = (props) => {
 
   //form states
   const [formData, setFormData] = useState(defaultData);
-  const [errorMessage, setErrorMessage] = useState(defaultData);
+  const [errorMessage, setErrorMessage] = useState(emptyData);
 
   //Validations
   const validateForm = () => {

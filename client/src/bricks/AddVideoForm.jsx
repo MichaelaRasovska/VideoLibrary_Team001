@@ -21,7 +21,7 @@ import { MultiSelect } from 'react-multi-select-component';
 const defaultData = {
   name: '',
   title: '',
-  duration: 0,
+  duration: '',
   description: '',
   genres: [],
   url: '',
