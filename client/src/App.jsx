@@ -12,6 +12,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function App() {
+  // auth const
   const { user, users, changeUser } = useContext(UserContext);
 
   //reload data if database changed
