@@ -47,13 +47,13 @@ const VideoList = (props) => {
         />
         <Button
           style={{ marginRight: '8px' }}
-          variant="outline-success"
+          variant="outline-dark"
           type="submit"
         >
           <Icon size={1} path={mdiMagnify} />
         </Button>
         <Button
-          variant="outline-primary"
+          variant="outline-dark"
           onClick={() =>
             setViewType((currentState) => {
               if (currentState === 'grid') return 'table';
