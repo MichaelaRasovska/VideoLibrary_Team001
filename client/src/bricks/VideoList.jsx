@@ -54,6 +54,7 @@ const VideoList = (props) => {
         </Button>
         <Button
           variant="outline-dark"
+          size="sm"
           onClick={() =>
             setViewType((currentState) => {
               if (currentState === 'grid') return 'table';
@@ -61,7 +62,7 @@ const VideoList = (props) => {
             })
           }
         >
-          <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
+          <Icon size={0.7} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
           {isGrid ? 'Tabulka' : 'Grid'}
         </Button>
         <AddVideoForm
