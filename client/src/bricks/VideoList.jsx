@@ -4,7 +4,6 @@ import VideoTableList from './VideoTableList';
 import AddVideoForm from './AddVideoForm';
 
 //styling bootstrap
-import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -36,59 +35,52 @@ const VideoList = (props) => {
   };
 
   return (
-    <div>
-      <Navbar bg="light">
-        <div className="container-fluid">
-          <Navbar.Brand>Seznam videí</Navbar.Brand>
-          <div>
-            <Form className="d-flex" onSubmit={handleSearch}>
-              <Form.Control
-                id={'searchInput'}
-                style={{ maxWidth: '200px', marginRight: '8px' }}
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                onChange={handleSearchDelete}
-              />
-              <Button
-                style={{ marginRight: '8px' }}
-                variant="outline-success"
-                type="submit"
-              >
-                <Icon size={1} path={mdiMagnify} />
-              </Button>
-              <Button
-                variant="outline-primary"
-                onClick={() =>
-                  setViewType((currentState) => {
-                    if (currentState === 'grid') return 'table';
-                    else return 'grid';
-                  })
-                }
-              >
-                <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
-                {isGrid ? 'Tabulka' : 'Grid'}
-              </Button>
-              <AddVideoForm
-                genreData={props.genreData}
-                handleReload={props.handleReload}
-              />
-            </Form>
-          </div>
-        </div>
-      </Navbar>
+    <>
+      <Form className="d-flex" onSubmit={handleSearch}>
+        <Form.Control
+          id={'searchInput'}
+          style={{ maxWidth: '200px', marginRight: '8px' }}
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          onChange={handleSearchDelete}
+        />
+        <Button
+          style={{ marginRight: '8px' }}
+          variant="outline-success"
+          type="submit"
+        >
+          <Icon size={1} path={mdiMagnify} />
+        </Button>
+        <Button
+          variant="outline-primary"
+          onClick={() =>
+            setViewType((currentState) => {
+              if (currentState === 'grid') return 'table';
+              else return 'grid';
+            })
+          }
+        >
+          <Icon size={1} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
+          {isGrid ? 'Tabulka' : 'Grid'}
+        </Button>
+        <AddVideoForm
+          genreData={props.genreData}
+          handleReload={props.handleReload}
+        />
+      </Form>
       <div className="grid">
         {isGrid ? (
           <VideoGridList
             videoData={filteredVideoData}
             genreData={props.genreData}
             handleReload={props.handleReload}
-            />
+          />
         ) : (
           <VideoTableList videoData={filteredVideoData} />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

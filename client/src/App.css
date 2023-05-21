@@ -3,23 +3,27 @@
 }
 
 html {
-  font-family: "Catamaran", sans-serif;
+  font-family: 'Catamaran', sans-serif;
 }
 
 .App {
-  margin: 16px auto; /* убрать margin-left и добавить auto для margin-right */
+  margin: 60px auto; /* убрать margin-left и добавить auto для margin-right */
   width: 95%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center; /* добавить выравнивание по центру по горизонтали */
+  align-items: flex-end; /* добавить выравнивание по центру по горизонтали */
 }
 
+/*
 .header {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   outline: none;
   font-weight: 600;
   border-radius: 8px;
+  margin-bottom: 10px;
   padding: 12px 24px;
   border: 0;
   color: #ffffff;
@@ -34,6 +38,7 @@ html {
   font-size: 25px;
   width: 100%;
 }
+*/
 
 .modal__backdrop {
   background: rgba(0, 0, 0, 0.65);
@@ -64,6 +69,7 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .card {
@@ -117,4 +123,10 @@ html {
 
 .hover_card:hover .card-body .list-group-item {
   background: none;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }

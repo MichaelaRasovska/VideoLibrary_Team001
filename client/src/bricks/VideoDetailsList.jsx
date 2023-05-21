@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import UpdateVideoForm from './UpdateVideoForm';
 import DeleteModal from './DeleteModal';
+import UserContext from '../UserProvider';
 
 const VideoDetailsList = (props) => {
   const [isModalShown, setShow] = useState(false);
   const handleShowModal = () => setShow(true);
   const handleCloseModal = () => setShow(false);
+  const { canEdit } = useContext(UserContext);
 
   return (
     <>
@@ -42,17 +44,19 @@ const VideoDetailsList = (props) => {
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <DeleteModal
-            video={props.video}
-            handleReload={props.handleReload}
-          />
-          <UpdateVideoForm
-            video={props.video}
-            genreData={props.genreData}
-            handleReload={props.handleReload}
-          />
-        </Modal.Footer>
+        {canEdit() && (
+          <Modal.Footer>
+            <DeleteModal
+              video={props.video}
+              handleReload={props.handleReload}
+            />
+            <UpdateVideoForm
+              video={props.video}
+              genreData={props.genreData}
+              handleReload={props.handleReload}
+            />
+          </Modal.Footer>
+        )}
       </Modal>
       <div
         style={{ color: 'grey', cursor: 'pointer' }}
