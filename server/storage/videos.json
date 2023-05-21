@@ -107,5 +107,18 @@
         "url": "https://www.youtube.com/watch?v=en2D_5TzXCA&list=RDen2D_5TzXCA&start_radio=1",
         "picture": "https://hips.hearstapps.com/hmg-prod/images/million-reasons-video-1481829812.jpg",
         "id": "e95e498a-ad10-4529-b43a-2daec8a3ed8d"
+    },
+    {
+        "name": "Adele",
+        "title": "Rolling in the Deep",
+        "duration": 250,
+        "description": "Adele is Rolling in the Deep",
+        "genres": [
+            "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064",
+            "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
+        ],
+        "url": "https://www.youtube.com/watch?v=rYEDA3JcQqw",
+        "picture": "https://upload.wikimedia.org/wikipedia/en/7/74/Adele_-_Rolling_in_the_Deep.png",
+        "id": "11b2e27e-a367-4402-8d60-62cca5f67e99"
     }
 ]

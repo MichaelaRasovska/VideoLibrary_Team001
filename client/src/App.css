@@ -124,9 +124,3 @@ html {
 .hover_card:hover .card-body .list-group-item {
   background: none;
 }
-
-.navbar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}

@@ -42,15 +42,15 @@ export const descriptionValidation = (value) => {
 };
 
 export const videoLinkValidation = (link) => {
-  return linkValidation(link, "video");
+  return linkValidation(link, 'video');
 };
 
 export const pictureLinkValidation = (link) => {
-  return linkValidation(link, "obrázek");
+  return linkValidation(link, 'obrázek');
 };
 
 const linkValidation = (link, fieldName) => {
-  if (/^(https|http)?:\/\/.*\.(com|cz)\/[a-zA-Z0-9]+/.test(link)) {
+  if (/^(https|http)?:\/\/.*\.(com|cz|org)\/[a-zA-Z0-9]+/.test(link)) {
     return null;
   }
   if (link.trim() === '') {
