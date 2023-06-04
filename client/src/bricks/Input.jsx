@@ -8,6 +8,7 @@ export const Input = ({
   onChange,
   validationMessage,
   errorMessage,
+  min,
 }) => {
   const [fieldChanged, setFieldChanged] = useState(false);
 
@@ -34,6 +35,7 @@ export const Input = ({
         placeholder=""
         type={type}
         value={value}
+        min={min}
         defaultValue={defaultValue}
         onChange={onInputChange}
       />

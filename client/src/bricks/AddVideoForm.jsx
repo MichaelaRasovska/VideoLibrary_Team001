@@ -146,11 +146,12 @@ const AddVideoForm = (props) => {
               }}
             />
             <Input
-              title="Délka videa:"
+              title="Délka videa (sekundy):"
               type="number"
               class="form-control"
               id="formGroupExampleInput"
               placeholder="Zadejte délku videa"
+              min="1"
               validationMessage={durationValidation(formData.duration)}
               errorMessage={errorMessage.duration}
               onChange={(e) => {
@@ -161,7 +162,6 @@ const AddVideoForm = (props) => {
                 setErrorMessage({ ...errorMessage, duration: '' });
               }}
             />
-            {'  '} sekund
             <label>
               Vyber odpovídající žánry:
               <MultiSelect

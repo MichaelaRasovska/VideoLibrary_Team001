@@ -19,7 +19,7 @@ export const titleValidation = (title) => {
 };
 
 export const durationValidation = (duration) => {
-  if (/^[0-59]/.test(duration)) {
+  if (/^[1-9]\d*$/.test(duration)) {
     return null;
   }
   if (duration === '') {
