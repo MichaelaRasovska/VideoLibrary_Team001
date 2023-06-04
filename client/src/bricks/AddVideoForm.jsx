@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../App.css';
 import { Modal } from 'react-bootstrap';
 import { useState } from 'react';
@@ -16,6 +16,8 @@ import {
 import { Input } from './Input';
 import { Textarea } from './Textarea';
 import { MultiSelect } from 'react-multi-select-component';
+import UserContext from "../UserProvider";
+
 
 //data
 const defaultData = {
@@ -29,6 +31,7 @@ const defaultData = {
 };
 
 const AddVideoForm = (props) => {
+  const {user} = useContext(UserContext);
   //modal states
   const [isModalShown, setShow] = useState(false);
 
@@ -88,6 +91,7 @@ const AddVideoForm = (props) => {
           genres: formData.genres,
           url: formData.url,
           picture: formData.picture,
+          createdBy: user.id,
         }),
       });
       props.handleReload();

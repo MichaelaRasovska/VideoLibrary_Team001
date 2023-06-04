@@ -8,6 +8,7 @@ const schema = {
     genres: { type: 'array', minItems: 1, uniqueItems: true },
     url: { type: 'string', format: 'uri' },
     picture: { type: 'string', format: 'uri' },
+    createdBy: { type: 'number'},
   },
   required: [
     'name',

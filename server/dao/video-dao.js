@@ -36,7 +36,8 @@ class VideoDao{
             return null;
         }
 
-        videos[videoIdx] = videoUpdate;
+        let videoToUpdate = videos[videoIdx];
+        videos[videoIdx] = {...videoToUpdate, ...videoUpdate, "createdBy": videoToUpdate.createdBy};
         await saveAll(this.videoStoragePath, videos);
 
         return videoUpdate;

@@ -86,11 +86,29 @@ export function UserProvider({ children }) {
     return user.role.id === 3;
   };
 
-  const canEdit = () => {
-    if (user.role.id > 1) return true;
+  const canEdit = (video) => {
+    if (isAdministrator()){
+      return true;
+    }
 
-    return false;
+    return isCreator && video.createdBy === user.id;
   };
+
+  const canAddResource = () => {
+    return user.role.id > 1;
+  };
+
+  const canViewDetail = () => {
+    return user.role.id > 0;
+  }
+
+  const getVideosToShow = (videos) => {
+    if(isCreator()){
+      return videos.filter(x => x.createdBy === user.id);
+    }
+
+    return videos;
+  }
 
   const changeUser = (id) => {
     const user = users.find((user) => user.id === id);
@@ -110,6 +128,9 @@ export function UserProvider({ children }) {
     isAdministrator,
     isVisitor,
     canEdit,
+    canViewDetail,
+    canAddResource,
+    getVideosToShow
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

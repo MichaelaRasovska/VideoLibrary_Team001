@@ -13,7 +13,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function App() {
   // auth const
-  const { user, users, changeUser } = useContext(UserContext);
+  const { user, users, changeUser, getVideosToShow } = useContext(UserContext);
 
   //reload data if database changed
   const [databaseChanged, setDatabaseChanged] = useState(false);
@@ -110,7 +110,7 @@ function App() {
               </Container>
             </Navbar>
             <VideoList
-              videoData={videoData}
+              videoData={getVideosToShow(videoData)}
               genreData={genreData}
               handleReload={handleReload}
             />

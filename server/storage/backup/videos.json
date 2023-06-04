@@ -10,7 +10,8 @@
       "2aa337ae-4330-4be9-b0f4-4325b3e1a18a"
     ],
     "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-    "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
+    "picture": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png",
+    "createdBy": 2
   },
   {
     "id": "c8ccf98e-097c-4e06-bbeb-68a7c437d87e",
@@ -22,7 +23,8 @@
       "2d0a1f2b-4a0d-4e9b-92b8-580362d99992"
     ],
     "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-    "picture": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4"
+    "picture": "https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4",
+    "createdBy": 2
   },
   {
     "id": "1fb0182b-b876-4ffc-8d14-59d2244cb895",
@@ -36,7 +38,8 @@
       "2aa337ae-4330-4be9-b0f4-4325b3e1a18a"
     ],
     "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-    "picture": "https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg"
+    "picture": "https://upload.wikimedia.org/wikipedia/en/7/70/Shakirasinglewc.jpg",
+    "createdBy": 3
   },
   {
     "id": "abc811be-f251-45f4-8986-17522185c74e",
@@ -48,6 +51,7 @@
       "ea7bb6a0-ddb5-4ebd-831a-c9e013eac064"
     ],
     "url": "https://www.youtube.com/jakfshkha564ejrkhs465",
-    "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg"
+    "picture": "https://m.media-amazon.com/images/I/51Tbf-RBBHL._SY355_.jpg",
+    "createdBy": 3
   }
 ]
