@@ -41,6 +41,9 @@ const AddVideoForm = (props) => {
   //form states
   const [formData, setFormData] = useState(defaultData);
   const [errorMessage, setErrorMessage] = useState(defaultData);
+  const [addVideoCall, setAddVideoCall] = useState({
+    state: 'inactive'
+  });
 
   //Validations
 
@@ -78,7 +81,7 @@ const AddVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      await fetch('http://localhost:3000/videos', {
+      let response = await fetch('http://localhost:3000/videos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,9 +97,16 @@ const AddVideoForm = (props) => {
           createdBy: user.id,
         }),
       });
-      props.handleReload();
-      setFormData(defaultData);
-      handleCloseModal();
+
+      let data = await response.json();
+      if(response.status >= 400){
+        setAddVideoCall({state: "error", error: data})
+      }else{
+        setAddVideoCall({state: "success", error: data})
+        props.handleReload();
+        setFormData(defaultData);
+        handleCloseModal();
+      }
     }
   };
 
@@ -213,15 +223,32 @@ const AddVideoForm = (props) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="outline-primary"
-            onClick={(e) => {
-              e.preventDefault();
-              handleSubmit();
-            }}
-          >
-            Vložit
-          </Button>
+          <div>
+            {addVideoCall.state === 'error' &&
+                <div className="text-danger">
+                  <div>
+                    Error: {addVideoCall.error.message}
+                  </div>
+                  <div>
+                    {addVideoCall.error.reason &&
+                        <p>Reason: {addVideoCall.error.reason.map(x => `${x.instancePath.substring(1)} ${x.message}`).join('\n')}</p>
+                    }
+                  </div>
+                </div>
+            }
+          </div>
+          <div>
+            <Button
+              variant="outline-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+            >
+              Vložit
+            </Button>
+
+          </div>
         </Modal.Footer>
       </Modal>
       <Button

@@ -46,6 +46,9 @@ const UpdateVideoForm = (props) => {
   //form states
   const [formData, setFormData] = useState(defaultData);
   const [errorMessage, setErrorMessage] = useState(emptyData);
+  const [updateVideoCall, setUpdateVideoCall] = useState({
+    state: 'inactive'
+  });
 
   //Validations
   const validateForm = () => {
@@ -82,7 +85,7 @@ const UpdateVideoForm = (props) => {
 
   const handleSubmit = async () => {
     if (validateForm() === true) {
-      await fetch(`http://localhost:8000/videos/${props.video.id}`, {
+      let response = await fetch(`http://localhost:8000/videos/${props.video.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -102,9 +105,16 @@ const UpdateVideoForm = (props) => {
             formData.picture === 0 ? defaultData.picture : formData.picture,
         }),
       });
-      setFormData(defaultData);
-      props.handleReload();
-      handleCloseModal();
+
+      let data = await response.json();
+      if(response.status >= 400){
+        setUpdateVideoCall({state: "error", error: data})
+      }else{
+        setUpdateVideoCall({state: "success", error: data})
+        props.handleReload();
+        setFormData(defaultData);
+        handleCloseModal();
+      }
     }
   };
 
@@ -150,8 +160,9 @@ const UpdateVideoForm = (props) => {
               }}
             />
             <Input
-              title="Délka videa:"
+              title="Délka videa (v sekundách):"
               type="number"
+              min="1"
               defaultValue={props.video.duration}
               validationMessage={durationValidation(formData.duration)}
               errorMessage={errorMessage.duration}
@@ -163,7 +174,6 @@ const UpdateVideoForm = (props) => {
                 setErrorMessage({ ...errorMessage, duration: '' });
               }}
             />
-            {'  '} sekund
             <label>
               Vybrané žánry:{` `}
               {props.video.genres
@@ -220,6 +230,20 @@ const UpdateVideoForm = (props) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
+          <div>
+            {updateVideoCall.state === 'error' &&
+                <div className="text-danger">
+                  <div>
+                    Error: {updateVideoCall.error.message}
+                  </div>
+                  <div>
+                    {updateVideoCall.error.reason &&
+                        <p>Reason: {updateVideoCall.error.reason.map(x => `${x.instancePath.substring(1)} ${x.message}`).join('\n')}</p>
+                    }
+                  </div>
+                </div>
+            }
+          </div>
           <Button
             variant="outline-primary"
             onClick={(e) => {
