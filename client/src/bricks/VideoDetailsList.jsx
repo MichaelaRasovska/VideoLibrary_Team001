@@ -40,7 +40,7 @@ const VideoDetailsList = (props) => {
             </div>
             <div>
               <span className="text-muted">URL videa: </span>
-              <a href={props.video.url}>{props.video.url}</a>
+              <a href={props.video.url} target="_blank">{props.video.url}</a>
             </div>
           </div>
         </Modal.Body>
