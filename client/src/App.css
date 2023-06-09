@@ -7,38 +7,13 @@ html {
 }
 
 .App {
-  margin: 60px auto; /* убрать margin-left и добавить auto для margin-right */
+  margin: 60px auto;
   width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end; /* добавить выравнивание по центру по горизонтали */
+  justify-content: center;
+  align-items: flex-end;
 }
-
-/*
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  outline: none;
-  font-weight: 600;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  padding: 12px 24px;
-  border: 0;
-  color: #ffffff;
-  background: radial-gradient(
-    780px at 37.8% 100.3%,
-    rgb(19, 55, 115) 2.2%,
-    rgb(32, 7, 80) 20.2%,
-    rgb(27, 88, 111) 58.6%,
-    rgb(12, 51, 76) 96.1%
-  );
-  line-height: 2.15;
-  font-size: 25px;
-  width: 100%;
-}
-*/
 
 .modal__backdrop {
   background: rgba(0, 0, 0, 0.65);
@@ -67,7 +42,10 @@ html {
 
 .grid {
   display: flex;
+  width: 100%;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }

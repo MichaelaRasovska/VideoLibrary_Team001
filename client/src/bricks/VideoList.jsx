@@ -1,8 +1,8 @@
-import React, {useContext, useMemo, useState} from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import VideoGridList from './VideoGridList';
 import VideoTableList from './VideoTableList';
 import AddVideoForm from './AddVideoForm';
-import UserContext from "../UserProvider";
+import UserContext from '../UserProvider';
 
 //styling bootstrap
 import Button from 'react-bootstrap/Button';
@@ -13,7 +13,7 @@ import Icon from '@mdi/react';
 import { mdiTable, mdiViewGridOutline, mdiMagnify } from '@mdi/js';
 
 const VideoList = (props) => {
-  const {canAddResource} = useContext(UserContext);
+  const { canAddResource } = useContext(UserContext);
   const [viewType, setViewType] = useState('grid');
   const isGrid = viewType === 'grid';
   const [searchBy, setSearchBy] = useState('');
@@ -67,12 +67,12 @@ const VideoList = (props) => {
           <Icon size={0.7} path={isGrid ? mdiTable : mdiViewGridOutline} />{' '}
           {isGrid ? 'Tabulka' : 'Grid'}
         </Button>
-        {canAddResource() &&
+        {canAddResource() && (
           <AddVideoForm
             genreData={props.genreData}
             handleReload={props.handleReload}
           />
-        }
+        )}
       </Form>
       <div className="grid">
         {isGrid ? (
