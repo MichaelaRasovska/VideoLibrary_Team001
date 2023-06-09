@@ -50,7 +50,7 @@ export const pictureLinkValidation = (link) => {
 };
 
 const linkValidation = (link, fieldName) => {
-  if (/^(https|http)?:\/\/.*\.(com|cz|org)\/[a-zA-Z0-9]+/.test(link)) {
+  if (/^(https|http)?:\/\/.*\..+/.test(link)) {
     return null;
   }
   if (link.trim() === '') {
