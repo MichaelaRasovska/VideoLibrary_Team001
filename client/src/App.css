@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: 'Catamaran', sans-serif;
+  font-family: "Catamaran", sans-serif;
 }
 
 .App {
@@ -85,12 +85,12 @@ html {
 .hover_card:hover .list-group-item {
   background: radial-gradient(
     780px at 37.8% 100.3%,
-    rgba(19, 55, 115, 0.06) 2.2%,
+    rgba(115, 19, 89, 0.06) 2.2%,
     rgba(32, 7, 80, 0.06) 20.2%,
-    rgba(27, 88, 111, 0.06) 58.6%,
+    rgba(111, 126, 132, 0.06) 58.6%,
     rgba(115, 88, 44, 0.06) 75%,
     rgba(99, 19, 90, 0.06) 89.6%,
-    rgba(12, 51, 76, 0.06) 96.1%
+    rgba(58, 69, 76, 0.06) 96.1%
   );
   color: #242424;
 }

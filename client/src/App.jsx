@@ -1,15 +1,15 @@
-import styles from './App.css';
-import VideoList from './bricks/VideoList';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState, useEffect, useContext } from 'react';
-import Icon from '@mdi/react';
-import { mdiLoading } from '@mdi/js';
-import UserContext from './UserProvider';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import styles from "./App.css";
+import VideoList from "./bricks/VideoList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState, useEffect, useContext } from "react";
+import Icon from "@mdi/react";
+import { mdiLoading } from "@mdi/js";
+import UserContext from "./UserProvider";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 function App() {
   // auth const
@@ -24,17 +24,17 @@ function App() {
 
   //server call for data (videos and genres)
   const [initialDataLoadCall, setInitialDataLoadCall] = useState({
-    state: 'pending',
+    state: "pending",
   });
-  const videoDataUrl = 'http://localhost:3000/videos';
-  const genreDataUrl = 'http://localhost:3000/genres';
+  const videoDataUrl = "http://localhost:3000/videos";
+  const genreDataUrl = "http://localhost:3000/genres";
 
   async function fetchData(dataUrl) {
     const videoResponse = await fetch(dataUrl, {
-      method: 'GET',
+      method: "GET",
     });
     if (videoResponse.status >= 400) {
-      setInitialDataLoadCall({ state: 'error', error: videoResponse });
+      setInitialDataLoadCall({ state: "error", error: videoResponse });
 
       return null;
     }
@@ -52,7 +52,7 @@ function App() {
       }
 
       setInitialDataLoadCall({
-        state: 'success',
+        state: "success",
         videoData: videoData,
         genreData: genreData,
       });
@@ -66,18 +66,18 @@ function App() {
 
   function getChild() {
     switch (initialDataLoadCall.state) {
-      case 'pending':
+      case "pending":
         return (
           <div className={styles.loading}>
             <Icon size={2} path={mdiLoading} spin={true} />
           </div>
         );
-      case 'success':
+      case "success":
         return (
           <>
             <Navbar
               fixed="top"
-              expand={'sm'}
+              // expand={"sm"}
               className="mb-3"
               bg="dark"
               variant="dark"
@@ -86,10 +86,10 @@ function App() {
                 <Navbar.Brand>Videotéka Unicorn</Navbar.Brand>
                 <Navbar.Offcanvas id={`offcanvasNavbar-expand-sm`}>
                   <Offcanvas.Body>
-                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav className="justify-content-end flex-grow-1 pe-1">
                       <NavDropdown
                         align="end"
-                        title={user.fullName ?? 'Nepřihlášen'}
+                        title={user.fullName ?? "Nepřihlášen"}
                       >
                         {users.map((user) => {
                           return (
@@ -116,7 +116,7 @@ function App() {
             />
           </>
         );
-      case 'error':
+      case "error":
         return (
           <div className={styles.error}>
             <div>Nepodařilo se načíst data.</div>
