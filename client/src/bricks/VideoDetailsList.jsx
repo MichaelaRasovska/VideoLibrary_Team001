@@ -14,7 +14,7 @@ const VideoDetailsList = (props) => {
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Detail videa {props.video.id} sd</Modal.Title>
+          <Modal.Title>Detail videa {props.video.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>

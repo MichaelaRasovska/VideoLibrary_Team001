@@ -26,7 +26,7 @@ const DeleteModal = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="outline-secondary"
+            variant="outline-danger"
             onClick={(e) => {
               e.preventDefault();
               handleSubmit();
@@ -34,10 +34,9 @@ const DeleteModal = (props) => {
           >
             Smazat
           </Button>
-          <Button variant="outline-secondary">Ponechat</Button>
         </Modal.Footer>
       </Modal>
-      <Button variant="outline-secondary" onClick={handleShowModal}>
+      <Button variant="outline-danger" onClick={handleShowModal}>
         Smazat video
       </Button>
     </>

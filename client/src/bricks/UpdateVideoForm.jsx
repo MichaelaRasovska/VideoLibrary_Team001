@@ -183,7 +183,7 @@ const UpdateVideoForm = (props) => {
                 .join(', ')}
             </label>
             <label>
-              Vyber nové žánry:
+              Vyberte nové žánry:
               <MultiSelect
                 options={props.genreData.map((x) => {
                   return {

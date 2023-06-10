@@ -125,7 +125,7 @@ const AddVideoForm = (props) => {
     <>
       <Modal show={isModalShown} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Upravte údaje o videu:</Modal.Title>
+          <Modal.Title>Vyplňte údaje o videu:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="addVideoForm">
@@ -173,7 +173,7 @@ const AddVideoForm = (props) => {
               }}
             />
             <label>
-              Vyber odpovídající žánry:
+              Vyberte odpovídající žánry:
               <MultiSelect
                 options={props.genreData.map((x) => {
                   return {
